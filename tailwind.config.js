@@ -11,17 +11,18 @@ export default {
   theme: {
     extend: {
       animation: {
-        marquee: "marquee 20s linear infinite",
+        smoke: "smoke 5s ease-in-out infinite",
       },
       keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(-100%)" },
+        smoke: {
+          "0%": { backgroundPosition: "0 0" },
+          "50%": { backgroundPosition: "100% 0" },
+          "100%": { backgroundPosition: "0 0" },
         },
       },
       colors: {
         customLight: "#F9F9F4",
-        "customBlue": "#0403FE",
+        customBlue: "#0403FE",
       },
       fontFamily: {
         sri: ["Sriracha"],

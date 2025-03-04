@@ -6,7 +6,7 @@
       style="background-image: url('/img/bg.jpg')"
     ></div>
     <div
-      class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent"
+      class="absolute inset-0 bg-gradient-to-t from-blue-900 to-transparent bg-[length:200%_100%] animate-smoke"
     ></div>
 
     <div
