@@ -2,8 +2,15 @@
   "menu": {
     "home": "Accueil",
     "tv": "Tv",
-    "submit": "Soumettre une vidéo",
-    "Broadcasts": "Diffusions",
+    "submit": "Submit",
+    "Broadcasts": "Emission",
     "contact": "Contacts"
+  },
+  "hero": {
+    "title": "À l'affiche !",
+    "title2": "Partageons des rêves",
+    "desc": "Disponible sur Apple Soundcast et Spotify",
+    "btn1": "Écouter maintenant",
+    "btn2": "Plus"
   }
 }

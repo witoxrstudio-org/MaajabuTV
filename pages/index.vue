@@ -2,6 +2,14 @@
   <HeroSection>
     <MediaCarousel :mediaList="mediaList" />
   </HeroSection>
+  <div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores atque
+    fugiat esse. Sed eius nam esse nesciunt, eveniet eaque distinctio! Fugiat
+    temporibus necessitatibus laborum minus architecto, provident animi esse
+    eum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
+    esse placeat aspernatur. Est earum numquam eaque in exercitationem.
+    Obcaecati nobis, atque fugit necessitatibus id quasi consectetur ut optio
+  </div>
 </template>
 
 <script setup>

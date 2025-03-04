@@ -2,7 +2,9 @@
   <div
     class="fixed left-0 right-0 top-0 z-50 bg-tansparent text-white"
     :class="
-      isScrolled ? 'bg-black text-white shadow-md' : 'bg-transparent text-white'
+      isScrolled
+        ? 'mj-container bg-black mt-2 rounded-lg bg-opacity-80 text-white shadow-md'
+        : 'bg-transparent text-white'
     "
   >
     <header class="mj-container flex w-full items-center justify-between p-4">
@@ -39,7 +41,7 @@
         </div>
 
         <!-- Recherche -->
-        <button>
+        <button class="hidden md:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -57,7 +59,7 @@
         </button>
 
         <!-- Notifications -->
-        <button class="relative">
+        <button class="relative hidden md:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -81,7 +83,7 @@
         </button>
 
         <!-- Profil -->
-        <button>
+        <button class="hidden md:block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -99,30 +101,69 @@
         </button>
 
         <!-- Bouton menu mobile -->
-        <button @click="toggleMenu" class="md:hidden">
-          <Bars3Icon class="w-6 h-6" />
-        </button>
+        <!-- Bouton Toggle Menu Mobile toujours visible -->
+        <div class="flex items-center justify-between">
+          <!-- LangSwitcher aligné à gauche -->
+          <!-- Bouton de menu -->
+          <button
+            @click="toggleMenu"
+            class="fixed right-4 top-6 z-50 text-blue-500 md:hidden p-2 -mt-4 bg-blue-100"
+          >
+            <!-- SVG pour le bouton du menu -->
+            <svg
+              v-if="!menuOpen"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5h14a1 1 0 010 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2zm0 4h14a1 1 0 110 2H3a1 1 0 110-2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <svg
+              v-else
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <transition name="fade">
+          <nav
+            v-if="menuOpen"
+            class="fixed h-auto inset-0 z-40 m-4 flex flex-grow flex-col items-center space-y-6 rounded-lg border border-gray-300 bg-gradient-to-b from-white via-white/70 to-white/40 p-8 backdrop-blur-md transition-transform duration-300 ease-out"
+          >
+            <NuxtLink
+              v-for="(item, index) in menuItems"
+              :key="index"
+              :to="localPath(item)"
+              @click="closeMenu"
+              class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl
+  transition-opacity duration-300 opacity-0 animate-fadeIn delay-{{
+    index * 100
+  }}"
+              :class="{
+                'text-blue-800 underline': isActiveLink(localPath(item)),
+              }"
+            >
+              {{ item }}
+            </NuxtLink>
+          </nav>
+        </transition>
       </div>
     </header>
-
-    <!-- Menu Mobile -->
-    <transition name="slide">
-      <div
-        v-if="menuOpen"
-        class="absolute top-16 left-0 right-0 bg-white shadow-lg md:hidden"
-      >
-        <nav class="flex flex-col space-y-4 p-4">
-          <NuxtLink
-            v-for="(item, index) in menuItem"
-            :key="index"
-            :to="localPath(item)"
-            class="block text-lg font-semibold"
-          >
-            {{ item }}
-          </NuxtLink>
-        </nav>
-      </div>
-    </transition>
   </div>
 </template>
 
@@ -160,12 +201,14 @@ const menuItem = computed(() => [
   t("menu.home"),
   t("menu.tv"),
   t("menu.submit"),
+  t("menu.Broadcasts"),
   t("menu.contact"),
 ]);
 const menuItems = computed(() => [
   t("menu.home"),
   t("menu.tv"),
   t("menu.submit"),
+  t("menu.broadcasts"),
   t("menu.contact"),
 ]);
 

@@ -2,8 +2,15 @@
   "menu": {
     "home": "Home",
     "tv": "Tv",
-    "submit": "Submit Video",
+    "submit": "Submit",
     "Broadcasts": "Broadcasts",
     "contact": "Contacts"
+  },
+  "hero": {
+    "title": "Now showing!",
+    "title2": "Let’s share dreams",
+    "desc": "Available on Apple Soundcast and Spotify",
+    "btn1": "Stream Now",
+    "btn2": "More"
   }
 }
