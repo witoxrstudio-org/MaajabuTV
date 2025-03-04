@@ -12,7 +12,7 @@
     <div
       class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4"
     >
-      <h1 class="text-4xl md:text-6xl font-bold">
+      <h1 class="text-4xl md:text-6xl font-bold -mt-24">
         Now showing!<br />Let’s share dreams
       </h1>
       <p class="mt-2 text-lg">Available on Apple Soundcast and Spotify</p>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="relative z-10 -mt-64 px-8 md:px-16">
+    <div class="relative z-10 -mt-60 mb-4 md:px-16">
       <slot />
     </div>
   </section>
