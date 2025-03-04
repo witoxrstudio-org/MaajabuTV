@@ -11,7 +11,7 @@
       <!-- Logo -->
       <div class="flex items-center">
         <NuxtLink to="/">
-          <img src="/img/logo.png" alt="Ieda Logo" class="h-14 sm:h-14" />
+          <img src="/img/logo.png" alt="Maajabu Logo" class="h-20 sm:h-20" />
         </NuxtLink>
       </div>
 

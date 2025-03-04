@@ -13,9 +13,9 @@
       class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4"
     >
       <h1 class="text-4xl md:text-6xl font-bold -mt-24">
-        Now showing!<br />Let’s share dreams
+        {{ t("hero.title") }}<br />{{ t("hero.title2") }}
       </h1>
-      <p class="mt-2 text-lg">Available on Apple Soundcast and Spotify</p>
+      <p class="mt-2 text-lg">{{ t("hero.desc") }}</p>
 
       <div class="mt-6 space-x-4">
         <button
@@ -36,3 +36,6 @@
     </div>
   </section>
 </template>
+<script setup>
+const { t } = useI18n();
+</script>
