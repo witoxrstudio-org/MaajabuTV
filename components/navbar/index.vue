@@ -9,7 +9,7 @@
       <!-- Logo -->
       <div class="flex items-center">
         <NuxtLink to="/">
-          <img src="/img/logo.png" alt="Ieda Logo" class="h-12 sm:h-12" />
+          <img src="/img/logo.png" alt="Ieda Logo" class="h-14 sm:h-14" />
         </NuxtLink>
       </div>
 

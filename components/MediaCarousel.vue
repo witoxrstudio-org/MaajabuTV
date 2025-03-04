@@ -19,12 +19,20 @@
     >
       <swiper-slide v-for="(media, index) in mediaList" :key="index">
         <div
-          class="relative rounded-lg overflow-hidden transition-transform duration-300 gap-4"
+          class="relative rounded-lg overflow-hidden transition-transform duration-300"
         >
           <img
             :src="media.image"
-            class="h-32 md:h-40 lg:h-48 w-full md:w-64 lg:w-80 object-cover rounded-lg"
+            class="h-32 md:h-40 lg:h-48 w-full md:w-64 lg:w-80 object-cover rounded-lg border-2 border-dotted"
           />
+          <!-- Icône Play centrée avec effet hover -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <img
+              src="/img/btn_play.png"
+              alt="Play"
+              class="w-12 h-12 transition-transform duration-300 ease-in-out transform hover:scale-110 hover:opacity-80"
+            />
+          </div>
         </div>
       </swiper-slide>
     </swiper>
