@@ -23,7 +23,7 @@
         >
           <img
             :src="media.image"
-            class="h-40 md:h-48 lg:h-56 w-full md:w-80 lg:w-96 object-cover rounded-lg"
+            class="h-32 md:h-40 lg:h-48 w-full md:w-64 lg:w-80 object-cover rounded-lg"
           />
         </div>
       </swiper-slide>
