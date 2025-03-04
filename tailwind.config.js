@@ -9,7 +9,24 @@ export default {
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        marquee: "marquee 20s linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
+      colors: {
+        customLight: "#F9F9F4",
+        "customBlue": "#0403FE",
+      },
+      fontFamily: {
+        sri: ["Sriracha"],
+      },
+    },
   },
   plugins: [],
 };
