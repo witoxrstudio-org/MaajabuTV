@@ -1,14 +1,58 @@
 <template>
-  <HeroSection>
-    <MediaCarousel :mediaList="mediaList" />
-  </HeroSection>
   <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores atque
-    fugiat esse. Sed eius nam esse nesciunt, eveniet eaque distinctio! Fugiat
-    temporibus necessitatibus laborum minus architecto, provident animi esse
-    eum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-    esse placeat aspernatur. Est earum numquam eaque in exercitationem.
-    Obcaecati nobis, atque fugit necessitatibus id quasi consectetur ut optio
+    <HeroSection>
+      <MediaCarousel :mediaList="mediaList" />
+    </HeroSection>
+    <!-- section movies -->
+    <section class="bg-black py-6">
+      <div class="mj-container text-white">
+        <h2 class="text-2xl font-bold text-white">
+          <span class="text-blue-500">Movies</span> Collections
+        </h2>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-6 mt-6"
+        >
+          <NuxtLink
+            v-for="movie in movies"
+            :key="movie.id"
+            :to="`/movies/${slugify(movie.title)}`"
+            class="relative group overflow-hidden rounded-lg shadow-lg bg-gray-800 cursor-pointer h-64"
+          >
+            <img
+              :src="movie.image"
+              :alt="movie.title"
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="absolute bottom-0 left-0 w-full h-28 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4"
+            >
+              <h3 class="text-white font-semibold text-sm md:text-lg">
+                {{ movie.title }} ({{ movie.year }})
+              </h3>
+              <p class="text-xs md:text-sm text-gray-400">{{ movie.genre }}</p>
+              <div class="flex space-x-2 mt-2">
+                <button
+                  class="bg-gray-700 p-1.5 md:p-2 rounded-full text-white hover:bg-blue-500 text-xs md:text-sm"
+                >
+                  <i class="fas fa-play"></i>
+                </button>
+                <button
+                  class="bg-gray-700 p-1.5 md:p-2 rounded-full text-white hover:bg-blue-500 text-xs md:text-sm"
+                >
+                  <i class="fas fa-volume-mute"></i>
+                </button>
+                <button
+                  class="bg-gray-700 p-1.5 md:p-2 rounded-full text-white hover:bg-blue-500 text-xs md:text-sm"
+                >
+                  <i class="fas fa-ellipsis-h"></i>
+                </button>
+              </div>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+    <!-- Fin section movies -->
   </div>
 </template>
 
@@ -24,4 +68,57 @@ const mediaList = [
   { image: "/img/a3.png" },
   { image: "/img/c2.jpg" },
 ];
+const movies = [
+  {
+    id: 1,
+    title: "Plus q'un chant",
+    year: 2017,
+    genre: "Musical, Gospel",
+    image: "/img/al1.jpg",
+  },
+  {
+    id: 2,
+    title: "Je te fais confiance",
+    year: 2019,
+    genre: "Musical, Gospel",
+    image: "/img/al2.jpg",
+  },
+  {
+    id: 3,
+    title: "To tomboli Kombo",
+    year: 2016,
+    genre: "Musical, Gospel",
+    image: "/img/al3.jpg",
+  },
+  {
+    id: 4,
+    title: "Benga ngai",
+    year: 2022,
+    genre: "Musical, Gospel",
+    image: "/img/al4.jpg",
+  },
+  {
+    id: 5,
+    title: "Bikuke",
+    year: 2021,
+    genre: "Musical, Gospel",
+    image: "/img/al5.jpg",
+  },
+  {
+    id: 6,
+    title: "Faveur Mukoko",
+    year: 2022,
+    genre: "Musical, Gospel",
+    image: "/img/fol3.png",
+  },
+];
+const slugify = (title) =>
+  title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^a-z0-9-]/g, "");
 </script>
+<style>
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+</style>
+
