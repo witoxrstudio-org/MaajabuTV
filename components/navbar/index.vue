@@ -103,7 +103,7 @@
             class="fixed h-auto inset-0 z-40 m-4 flex flex-grow flex-col items-center space-y-6 rounded-lg border border-gray-300 bg-gradient-to-b from-white via-white/70 to-white/40 p-8 backdrop-blur-md transition-transform duration-300 ease-out"
           >
             <NuxtLink
-              v-for="(item, index) in menuItems"
+              v-for="(item, index) in menuItem"
               :key="index"
               :to="localPath(item)"
               @click="closeMenu"
@@ -115,7 +115,12 @@
                 'text-blue-800 underline': isActiveLink(localPath(item)),
               }"
             >
-              {{ item }}
+              <div>
+                {{ item }} Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Veritatis dolorum alias magni ullam accusamus repellat
+                voluptate delectus autem praesentium accusantium expedita optio,
+                quia quibusdam laudantium ea officia minima iure dicta!
+              </div>
             </NuxtLink>
           </nav>
         </transition>
@@ -158,7 +163,7 @@ const menuItem = computed(() => [
   t("menu.home"),
   t("menu.tv"),
   t("menu.submit"),
-  t("menu.Broadcasts"),
+  t("menu.broadcasts"),
   t("menu.contact"),
 ]);
 const menuItems = computed(() => [
@@ -204,7 +209,7 @@ watch(
 const isScrolled = ref(false);
 
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50;
+  isScrolled.value = window.scrollY > 20;
 };
 
 onMounted(() => {
