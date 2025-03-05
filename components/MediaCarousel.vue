@@ -23,7 +23,9 @@
             class="h-32 md:h-40 lg:h-48 w-full md:w-64 lg:w-80 object-cover rounded-lg"
           />
           <!-- Icône Play centrée avec effet hover -->
-          <div class="absolute inset-0 flex items-center justify-center">
+          <div
+            class="absolute inset-0 -left-7 flex items-center justify-center"
+          >
             <img
               src="/img/btn_play.png"
               alt="Play"
