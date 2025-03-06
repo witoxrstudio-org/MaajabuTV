@@ -1,19 +1,4 @@
 <template>
-  <!-- <section class="bg-black py-6 min-h-screen flex justify-center items-center">
-    <div class="mj-container text-white text-center">
-      <div class="max-w-xl mx-auto bg-gray-900 p-6 rounded-lg shadow-lg">
-        <img
-          :src="movie.image"
-          :alt="movie.title"
-          class="w-full h-64 object-cover rounded-lg mb-4"
-        />
-        <h1 class="text-3xl font-bold text-blue-500">{{ movie.title }}</h1>
-        <p class="text-gray-400 text-lg">
-          ({{ movie.year }}) - {{ movie.genre }}
-        </p>
-      </div>
-    </div>
-  </section> -->
   <div class="bg-gray-900 text-white min-h-screen">
     <!-- Section Vidéo -->
     <div

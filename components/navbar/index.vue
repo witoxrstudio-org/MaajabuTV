@@ -108,7 +108,7 @@
               :to="localPath(item)"
               @click="closeMenu"
               class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl
-  transition-opacity duration-300 opacity-0 animate-fadeIn delay-{{
+  transition-opacity duration-300 opacity-100 animate-fadeIn delay-{{
     index * 100
   }}"
               :class="{
@@ -116,10 +116,7 @@
               }"
             >
               <div>
-                {{ item }} Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Veritatis dolorum alias magni ullam accusamus repellat
-                voluptate delectus autem praesentium accusantium expedita optio,
-                quia quibusdam laudantium ea officia minima iure dicta!
+                {{ item }}
               </div>
             </NuxtLink>
           </nav>
