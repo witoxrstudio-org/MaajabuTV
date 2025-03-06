@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-900 text-white min-h-screen">
+  <div class="bg-black text-white min-h-screen">
     <!-- Section Vidéo -->
     <div
       class="relative h-96 flex items-center justify-center bg-gray-300 bg-cover bg-center"
