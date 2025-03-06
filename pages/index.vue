@@ -122,11 +122,16 @@
     <section class="bg-black py-6">
       <div class="mj-container">
         <div
-          class="flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
+          class="relative flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
         >
-          <div class="md:w-1/2 p-6 text-white">
-            <h2 class="text-3xl font-bold mb-4">A propos de nous</h2>
-            <p class="mb-6 text-justify">
+          <!-- Texte -->
+          <div
+            class="md:w-1/2 p-8 text-white flex flex-col justify-center relative z-20 md:pr-16"
+          >
+            <h2 class="text-4xl font-bold mb-4">Maajabu Tv</h2>
+            <p
+              class="mb-6 text-lg md:-mr-52 text-justify bg-blue-900/60 rounded-lg"
+            >
               Maajabu Gospel est un label de production musicale très connu,
               associé à quatre ambassadeurs talentueux et populaires : Mike
               Kalambay, Sandra Mbuyi, Deborah Lukalu et Rosny Kayiba. Ces
@@ -137,25 +142,28 @@
             </p>
             <div class="flex space-x-4">
               <button
-                class="bg-white text-blue-900 font-semibold py-2 px-4 rounded shadow"
+                class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
               >
-                Vidéos
+                Submit
               </button>
               <button
-                class="bg-white text-blue-900 font-semibold py-2 px-4 rounded shadow"
+                class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
               >
                 Nous contacter
               </button>
             </div>
           </div>
-          <div class="md:w-1/2 relative">
+
+          <!-- Image -->
+          <div class="md:w-1/2 relative h-64 md:h-auto">
+            <!-- Fond légèrement flouté pour le texte qui déborde -->
             <div
               class="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10"
             ></div>
             <img
-              src="/img/cover.jpg"
+              src="/img/luk.jpg"
               alt="People reading books"
-              class="absolute inset-0 w-full h-full object-cover z-0"
+              class="w-full h-full object-cover"
             />
           </div>
         </div>
