@@ -6,26 +6,28 @@
     <!-- section movies -->
     <section class="bg-black py-6">
       <div class="mj-container text-white">
+        <div class="flex justify-between items-center py-4 md:px-0">
+          <div class="w-1/3 border-t-2 border-white"></div>
+          <div class="w-1/3 text-center hidden md:block"></div>
+          <div class="w-1/3 border-t-2 border-white"></div>
+        </div>
         <div class="flex items-center justify-between w-full mx-auto">
           <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
             <span class="text-blue-500">Movies</span> Collections
-            <!-- <span
-              class="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
-            ></span> -->
           </h2>
           <a
             href="#"
-            class="text-blue-500 font-medium text-sm md:text-base relative group"
+            class="text-white font-medium text-sm md:text-base relative group"
           >
             Voir plus
             <span
-              class="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+              class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
             ></span>
           </a>
         </div>
 
         <div
-          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-3 gap-6 mt-6"
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 mt-6"
         >
           <NuxtLink
             v-for="movie in movies"
@@ -109,9 +111,56 @@
             </div>
           </NuxtLink>
         </div>
+        <div class="flex justify-between items-center py-4 md:px-0">
+          <div class="w-1/3 border-t-2 border-white"></div>
+          <div class="w-1/3 text-center hidden md:block"></div>
+          <div class="w-1/3 border-t-2 border-white"></div>
+        </div>
       </div>
     </section>
     <!-- Fin section movies -->
+    <section class="bg-black py-6">
+      <div class="mj-container">
+        <div
+          class="flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
+        >
+          <div class="md:w-1/2 p-6 text-white">
+            <h2 class="text-3xl font-bold mb-4">A propos de nous</h2>
+            <p class="mb-6 text-justify">
+              Maajabu Gospel est un label de production musicale très connu,
+              associé à quatre ambassadeurs talentueux et populaires : Mike
+              Kalambay, Sandra Mbuyi, Deborah Lukalu et Rosny Kayiba. Ces
+              artistes, qui comptent parmi les meilleurs chanteurs de gospel en
+              RDC, ont contribué à la popularité du label, notamment à travers
+              des événements comme Maajabu Talent, où ils jouent le rôle de
+              coachs et de juges.
+            </p>
+            <div class="flex space-x-4">
+              <button
+                class="bg-white text-blue-900 font-semibold py-2 px-4 rounded shadow"
+              >
+                Vidéos
+              </button>
+              <button
+                class="bg-white text-blue-900 font-semibold py-2 px-4 rounded shadow"
+              >
+                Nous contacter
+              </button>
+            </div>
+          </div>
+          <div class="md:w-1/2 relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10"
+            ></div>
+            <img
+              src="/img/cover.jpg"
+              alt="People reading books"
+              class="absolute inset-0 w-full h-full object-cover z-0"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
