@@ -3,8 +3,8 @@
     class="fixed left-0 right-0 top-0 z-50 bg-tansparent text-white"
     :class="
       isScrolled
-        ? 'mj-container bg-black mt-2 rounded-lg bg-opacity-80 text-white shadow-md'
-        : 'bg-transparent text-white'
+        ? 'mj-container bg-black mt-2 rounded-lg bg-opacity-80 shadow-md'
+        : 'bg-transparent'
     "
   >
     <header class="mj-container flex w-full items-center justify-between p-4">
@@ -281,5 +281,19 @@ onUnmounted(() => {
   50% {
     transform: scale(1) translate(-50%, -50%);
   }
+}
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.route-leave-active {
+  transition: all 0.2s ease-in;
 }
 </style>
