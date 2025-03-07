@@ -164,6 +164,63 @@
         </div>
       </div>
     </section>
+    <section class="bg-black pb-6">
+      <div class="mj-container">
+        <div class="flex items-center justify-between w-full mx-auto mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
+            <span class="text-blue-500">Nos</span> Meilleurs Albums
+          </h2>
+          <a
+            href="#"
+            class="text-white font-medium text-sm md:text-base relative group"
+          >
+            Voir plus
+            <span
+              class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+        </div>
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        >
+          <div v-for="movie in movie" :key="movie.id" class="relative group">
+            <div
+              class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform transform group-hover:scale-105"
+            >
+              <img
+                v-if="movie.image"
+                :src="movie.image"
+                :alt="movie.title"
+                class="w-full h-56 object-cover"
+              />
+              <div v-else class="w-full h-56 bg-gray-700"></div>
+              <div class="p-2">
+                <h3 class="text-white text-sm font-semibold">
+                  {{ movie.title }} ({{ movie.year }})
+                </h3>
+                <p class="text-gray-400 text-xs">{{ movie.genre }}</p>
+              </div>
+            </div>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-700 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity"
+            >
+              <h3 class="text-white text-sm font-semibold">
+                {{ movie.title }} ({{ movie.year }})
+              </h3>
+              <p class="text-gray-300 text-xs">{{ movie.genre }}</p>
+              <div class="mt-2 flex space-x-2">
+                <button class="p-2 bg-gray-600 rounded-full hover:bg-gray-500">
+                  ▶️
+                </button>
+                <button class="p-2 bg-gray-600 rounded-full hover:bg-gray-500">
+                  ❤️
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -221,6 +278,78 @@ const movies = [
     year: 2022,
     genre: "Musical, Gospel",
     image: "/img/fol3.png",
+  },
+];
+const movie = [
+  {
+    id: 1,
+    title: "Psaumes",
+    year: 2019,
+    genre: "Musical, Gospel",
+    image: "/img/e1.png",
+  },
+  {
+    id: 2,
+    title: "Reponse",
+    year: 2019,
+    genre: "Musical, Gospel",
+    image: "/img/e2.png",
+  },
+  {
+    id: 3,
+    title: "KDO",
+    year: 2016,
+    genre: "Musical, Gospel",
+    image: "/img/e3.jpeg",
+  },
+  {
+    id: 4,
+    title: "Amour Inconditionnel",
+    year: 2012,
+    genre: "Musical, Gospel",
+    image: "/img/e4.jpg",
+  },
+  {
+    id: 5,
+    title: "Jésus",
+    year: 2023,
+    genre: "Musical, Gospel",
+    image: "/img/e5.jpg",
+  },
+  {
+    id: 6,
+    title: "Wondefull",
+    year: 2022,
+    genre: "Musical, Gospel",
+    image: "/img/e6.jpg",
+  },
+  {
+    id: 7,
+    title: "Historia",
+    year: 2021,
+    genre: "Musical, Gospel",
+    image: "/img/e7.jpg",
+  },
+  {
+    id: 8,
+    title: "Sois mon Dieu",
+    year: 2017,
+    genre: "Musical, Gospel",
+    image: "/img/e8.jpg",
+  },
+  {
+    id: 9,
+    title: "Emmanuel",
+    year: 2020,
+    genre: "Musical, Gospel",
+    image: "/img/e9.jpg",
+  },
+  {
+    id: 10,
+    title: "Monde Electrifié",
+    year: 2019,
+    genre: "Musical, Gospel",
+    image: "/img/e10.jpg",
   },
 ];
 const slugify = (title) =>
