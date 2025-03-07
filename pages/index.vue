@@ -266,12 +266,64 @@
         </div>
       </div>
     </section>
+    <section class="bg-black pb-6">
+      <div class="mj-container">
+        <div
+          class="text-white flex flex-col lg:flex-row items-center justify-between py-12 mx-auto"
+        >
+          <!-- Section de gauche : Titre et bouton -->
+          <div class="lg:w-1/2 text-left flex flex-col justify-center h-full">
+            <h2 class="text-3xl md:text-4xl font-bold text-center lg:text-left">
+              Frequently <span class="text-blue-500">Asked</span> Questions
+            </h2>
+            <p class="text-gray-400 mt-2 text-center lg:text-left">
+              Questions that get asked the most by our subscribers. Can't find
+              an answer?
+            </p>
+            <div class="mt-6 self-center lg:self-start">
+              <button
+                class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg"
+              >
+                Ask a Question
+              </button>
+            </div>
+          </div>
+
+          <!-- Section de droite : FAQ -->
+          <div class="lg:w-1/2 mt-8 lg:mt-0 space-y-4">
+            <div
+              v-for="(faq, index) in faqs"
+              :key="index"
+              class="border border-blue-500 rounded-lg overflow-hidden"
+            >
+              <button
+                @click="toggle(index)"
+                class="w-full flex justify-between items-center p-4 text-left focus:outline-none"
+              >
+                <span class="text-lg">{{ faq.question }}</span>
+                <span class="text-blue-400 text-2xl">
+                  {{ openIndex === index ? "−" : "+" }}
+                </span>
+              </button>
+
+              <NuxtTransition name="fade">
+                <div v-if="openIndex === index" class="p-4 text-gray-300">
+                  {{ faq.answer }}
+                </div>
+              </NuxtTransition>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-black pb-6">
+      <laster />
+    </section>
   </div>
 </template>
 
 <script setup>
-import HeroSection from "@/components/HeroSection.vue";
-import MediaCarousel from "@/components/MediaCarousel.vue";
+const openIndex = ref(null);
 
 const mediaList = [
   { image: "/img/a2.png" },
@@ -397,6 +449,42 @@ const movie = [
     image: "/img/e10.jpg",
   },
 ];
+const faqs = ref([
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+  {
+    question: "lorem ipsum",
+    answer:
+      "  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt voluptatibus !",
+  },
+]);
+
+const toggle = (index) => {
+  openIndex.value = openIndex.value === index ? null : index;
+};
 const slugify = (title) =>
   title
     .toLowerCase()
@@ -405,5 +493,13 @@ const slugify = (title) =>
 </script>
 <style>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
 
