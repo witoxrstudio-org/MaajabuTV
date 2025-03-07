@@ -37,29 +37,78 @@
           </div>
         </div>
         <!-- debut -->
-        <h1 class="text-3xl font-bold mb-6">Episodes</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div
+          class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
           <div
             v-for="video in videos"
             :key="video.slug"
             @click="$router.push(`/tv/${video.slug}`)"
-            class="cursor-pointer p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition"
+            class="group bg-gray-900 cursor-pointer rounded-lg relative"
           >
             <div
-              class="relative w-full h-40 bg-gray-600 flex items-center justify-center rounded-lg"
+              class="relative w-full h-48 bg-gray-700 rounded-t-md overflow-hidden flex items-center justify-center"
             >
-              <span class="text-4xl">▶️</span>
-            </div>
-            <div class="mt-4">
-              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded"
-                >Episode {{ video.episode }}</span
+              <!-- Image de fond -->
+              <img
+                :src="video.img"
+                alt="Description de l'image"
+                class="w-full h-full object-cover"
+              />
+
+              <!-- Icône Play centrée -->
+              <div
+                class="absolute inset-0 flex items-center justify-center bg-black/40"
               >
-              <h2 class="text-lg font-semibold mt-2">{{ video.title }}</h2>
-              <p class="text-gray-400 mt-1">{{ video.description }}</p>
-              <p class="text-gray-500 mt-2">Duration: {{ video.duration }}</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-16 h-16 text-white opacity-80 group-hover:text-yellow-500 transition duration-300"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+
+              <!-- Dégradé noir en bas de l'image -->
+              <div
+                class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-900 to-transparent"
+              ></div>
+            </div>
+
+            <div class="my-1 p-2">
+              <p class="text-xs text-gray-400">{{ video.genre }}</p>
+              <p
+                class="text-white font-bold group-hover:underline transition duration-300"
+              >
+                {{ video.title }}
+                <span class="text-gray-400">({{ video.year }})</span>
+              </p>
+
+              <!-- Icône de flèche dans le coin inférieur droit de la carte -->
+              <div
+                class="absolute bottom-2 right-2 transform group-hover:rotate-90 transition duration-300"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-4 h-4 text-white group-hover:text-yellow-500"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m4.5 4.5 15 15m0 0V8.25m0 11.25H8.25"
+                  />
+                </svg>
+              </div>
             </div>
           </div>
         </div>
+
         <!-- fin -->
       </div>
     </section>
@@ -71,23 +120,38 @@ const videos = [
     episode: 1,
     title: "I Know What You Did Last Summer",
     slug: "i-know-what-you-did-last-summer",
-    description: "As high schoolers...",
-    duration: "60m",
+    genre: "Drama",
+    img: "/img/v1.jpg",
+    year: 2023,
+    rating: 8.5,
+    isFavorite: false,
   },
   {
     episode: 2,
-    title: "1792 Days of Summer",
+    title: "1792 Days of Summer in the last hood",
     slug: "1792-days-of-summer",
-    description: "Yunah and Sung reunite...",
-    duration: "59m",
+    genre: "Romance",
+    year: 2024,
+    rating: 8.0,
+    isFavorite: true,
   },
   {
     episode: 3,
     title: "What I Hate About You",
     slug: "what-i-hate-about-you",
-    description: "Eager to film...",
-    duration: "59m",
+    genre: "Comedy",
+    year: 2022,
+    rating: 7.8,
+    isFavorite: false,
   },
-  // Ajoutez les autres vidéos ici...
+  {
+    episode: 2,
+    title: "1792 Days of Summer",
+    slug: "1792-days-of-summer",
+    genre: "Romance",
+    year: 2024,
+    rating: 8.0,
+    isFavorite: true,
+  },
 ];
 </script>
