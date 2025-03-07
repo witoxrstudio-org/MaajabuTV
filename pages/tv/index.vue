@@ -85,8 +85,6 @@
                 {{ video.title }}
                 <span class="text-gray-400">({{ video.year }})</span>
               </p>
-
-              <!-- Icône de flèche dans le coin inférieur droit de la carte -->
               <div
                 class="absolute bottom-2 right-2 transform group-hover:rotate-90 transition duration-300"
               >
@@ -110,6 +108,15 @@
         </div>
 
         <!-- fin -->
+        <div class="my-8 flex items-center justify-between space-x-4">
+          <div class="whitespace-nowrap aos-init aos-animate"></div>
+          <div class="relative mt-1 h-4 w-full">
+            <div
+              data-aos-anchor-placement="top-bottom"
+              class="absolute bottom-0 left-0 right-0 top-0 z-0 h-full w-full bg-[url(/img/line.jpg)] bg-repeat opacity-50 aos-init aos-animate"
+            ></div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -131,27 +138,40 @@ const videos = [
     title: "1792 Days of Summer in the last hood",
     slug: "1792-days-of-summer",
     genre: "Romance",
+    img: "/img/v2.jpg",
     year: 2024,
-    rating: 8.0,
-    isFavorite: true,
   },
   {
     episode: 3,
     title: "What I Hate About You",
     slug: "what-i-hate-about-you",
     genre: "Comedy",
+    img: "/img/v3.jpg",
     year: 2022,
-    rating: 7.8,
-    isFavorite: false,
   },
   {
-    episode: 2,
+    episode: 4,
     title: "1792 Days of Summer",
     slug: "1792-days-of-summer",
     genre: "Romance",
+    img: "/img/v4.jpg",
     year: 2024,
-    rating: 8.0,
-    isFavorite: true,
+  },
+  {
+    episode: 5,
+    title: "1792 Days of Summer",
+    slug: "1792-days-of-summer",
+    genre: "Romance",
+    img: "/img/v5.jpg",
+    year: 2024,
+  },
+  {
+    episode: 6,
+    title: "1792 Days of Summer",
+    slug: "1792-days-of-summer",
+    genre: "Romance",
+    img: "/img/v6.jpg",
+    year: 2024,
   },
 ];
 </script>
