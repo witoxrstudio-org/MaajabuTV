@@ -290,7 +290,7 @@
           </div>
 
           <!-- Section de droite : FAQ -->
-          <div class="lg:w-1/2 mt-8 lg:mt-0 space-y-4">
+          <div class="w-full lg:w-1/2 mt-8 lg:mt-0 space-y-4">
             <div
               v-for="(faq, index) in faqs"
               :key="index"
