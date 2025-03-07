@@ -37,7 +37,7 @@
           <li v-for="link in quickLinks" :key="link">
             <a
               href="#"
-              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 hover:text-indigo-400"
+              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 hover:text-blue-400"
               >{{ link }}</a
             >
           </li>
