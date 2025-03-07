@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mj-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+    class="mj-container grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4"
   >
     <img
       class="max-h-24 object-contain transition-all duration-300 hover:scale-110"
