@@ -316,7 +316,10 @@
         </div>
       </div>
     </section>
-    <section class="bg-black pb-6">
+    <section class="bg-blue-900 py-8">
+      <brands />
+    </section>
+    <section class="bg-black">
       <laster />
     </section>
   </div>
