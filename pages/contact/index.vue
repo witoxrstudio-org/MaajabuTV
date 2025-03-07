@@ -21,6 +21,21 @@
     <!-- Contenu principal -->
     <section class="bg-black text-white py-8">
       <div class="mj-container bg-black px-4">
+        <div class="mb-8 flex items-center justify-between space-x-4">
+          <div class="whitespace-nowrap aos-init aos-animate">
+            <h2
+              class="flex items-center justify-start text-xl font-semibold text-bleu sm:text-2xl"
+            >
+              <span data-v-8f1205ab="">Contact</span>
+            </h2>
+          </div>
+          <div class="relative mt-1 h-4 w-full">
+            <div
+              data-aos-anchor-placement="top-bottom"
+              class="absolute bottom-0 left-0 right-0 top-0 z-0 h-full w-full bg-[url(/img/line.jpg)] bg-repeat opacity-50 aos-init aos-animate"
+            ></div>
+          </div>
+        </div>
         <p class="text-justify sm:text-sm text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
           eius iure commodi, accusamus error incidunt quasi soluta velit dolore
