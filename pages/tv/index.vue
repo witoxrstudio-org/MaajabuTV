@@ -36,13 +36,58 @@
             ></div>
           </div>
         </div>
-        <p class="text-justify sm:text-sm text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
-          eius iure commodi, accusamus error incidunt quasi soluta velit dolore
-          delectus pariatur aliquid sed blanditiis praesentium magnam voluptatum
-          sint harum repellendus. Lorem ipsum dolor sit amet consectetur
-        </p>
+        <!-- debut -->
+        <h1 class="text-3xl font-bold mb-6">Episodes</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            v-for="video in videos"
+            :key="video.slug"
+            @click="$router.push(`/tv/${video.slug}`)"
+            class="cursor-pointer p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition"
+          >
+            <div
+              class="relative w-full h-40 bg-gray-600 flex items-center justify-center rounded-lg"
+            >
+              <span class="text-4xl">▶️</span>
+            </div>
+            <div class="mt-4">
+              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded"
+                >Episode {{ video.episode }}</span
+              >
+              <h2 class="text-lg font-semibold mt-2">{{ video.title }}</h2>
+              <p class="text-gray-400 mt-1">{{ video.description }}</p>
+              <p class="text-gray-500 mt-2">Duration: {{ video.duration }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- fin -->
       </div>
     </section>
   </div>
 </template>
+<script setup>
+const videos = [
+  {
+    episode: 1,
+    title: "I Know What You Did Last Summer",
+    slug: "i-know-what-you-did-last-summer",
+    description: "As high schoolers...",
+    duration: "60m",
+  },
+  {
+    episode: 2,
+    title: "1792 Days of Summer",
+    slug: "1792-days-of-summer",
+    description: "Yunah and Sung reunite...",
+    duration: "59m",
+  },
+  {
+    episode: 3,
+    title: "What I Hate About You",
+    slug: "what-i-hate-about-you",
+    description: "Eager to film...",
+    duration: "59m",
+  },
+  // Ajoutez les autres vidéos ici...
+];
+</script>
