@@ -119,7 +119,7 @@
       </div>
     </section>
     <!-- Fin section movies -->
-    <section class="bg-black py-6">
+    <section class="bg-black pb-6">
       <div class="mj-container">
         <div
           class="relative flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
@@ -141,11 +141,6 @@
               coachs et de juges.
             </p>
             <div class="flex space-x-4">
-              <button
-                class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
-              >
-                Submit
-              </button>
               <button
                 class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
               >
