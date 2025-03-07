@@ -11,13 +11,13 @@ export default {
   theme: {
     extend: {
       animation: {
-        smoke: "smoke 5s ease-in-out infinite",
+        fumee: "fumee 3s ease-in-out infinite",
       },
       keyframes: {
-        smoke: {
-          "0%": { backgroundPosition: "0 0" },
-          "50%": { backgroundPosition: "100% 0" },
-          "100%": { backgroundPosition: "0 0" },
+        fumee: {
+          "0%": { transform: "translateY(0) scaleX(1)" },
+          "50%": { transform: "translateY(-5px) scaleX(1.05)", opacity: 0.6 },
+          "100%": { transform: "translateY(0) scaleX(1)", opacity: 0.3 },
         },
       },
       colors: {

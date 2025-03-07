@@ -158,7 +158,7 @@
             <img
               src="/img/luk.jpg"
               alt="People reading books"
-              class="w-full h-full object-cover"
+              class="hidden md:block w-full h-full object-cover"
             />
           </div>
         </div>
@@ -185,7 +185,7 @@
         >
           <div v-for="movie in movie" :key="movie.id" class="relative group">
             <div
-              class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform transform group-hover:scale-105"
+              class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group"
             >
               <img
                 v-if="movie.image"
@@ -194,27 +194,72 @@
                 class="w-full h-56 object-cover"
               />
               <div v-else class="w-full h-56 bg-gray-700"></div>
-              <div class="p-2">
-                <h3 class="text-white text-sm font-semibold">
+
+              <div class="p-3">
+                <h3 class="text-white text-sm md:text-base font-semibold">
                   {{ movie.title }} ({{ movie.year }})
                 </h3>
-                <p class="text-gray-400 text-xs">{{ movie.genre }}</p>
+                <p class="text-gray-400 text-xs md:text-sm">
+                  {{ movie.genre }}
+                </p>
               </div>
-            </div>
-            <div
-              class="absolute inset-0 bg-gradient-to-b from-gray-900 to-gray-700 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity"
-            >
-              <h3 class="text-white text-sm font-semibold">
-                {{ movie.title }} ({{ movie.year }})
-              </h3>
-              <p class="text-gray-300 text-xs">{{ movie.genre }}</p>
-              <div class="mt-2 flex space-x-2">
-                <button class="p-2 bg-gray-600 rounded-full hover:bg-gray-500">
-                  ▶️
-                </button>
-                <button class="p-2 bg-gray-600 rounded-full hover:bg-gray-500">
-                  ❤️
-                </button>
+
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-500 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity text-center p-4"
+              >
+                <h3 class="text-white text-sm md:text-lg font-semibold">
+                  {{ movie.title }} ({{ movie.year }})
+                </h3>
+                <p class="text-gray-300 text-xs md:text-sm">
+                  {{ movie.genre }}
+                </p>
+
+                <div class="mt-4 flex gap-3 justify-center sm:justify-start">
+                  <!-- Bouton Lecture -->
+                  <button
+                    class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                      />
+                    </svg>
+                  </button>
+
+                  <!-- Bouton Favoris -->
+                  <button
+                    class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-red-500"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -304,8 +349,8 @@ const movie = [
   },
   {
     id: 4,
-    title: "Amour Inconditionnel",
-    year: 2012,
+    title: "Amour Inco.",
+    year: 2024,
     genre: "Musical, Gospel",
     image: "/img/e4.jpg",
   },
