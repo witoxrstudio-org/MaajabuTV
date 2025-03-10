@@ -126,7 +126,7 @@
         >
           <!-- Texte -->
           <div
-            class="md:w-1/2 p-8 text-white flex flex-col justify-center relative z-20 md:pr-16"
+            class="w-full md:w-1/2 p-8 text-white flex flex-col justify-center relative z-20 md:pr-16"
           >
             <h2 class="text-4xl font-bold mb-4">Maajabu Tv</h2>
             <p
@@ -150,20 +150,20 @@
           </div>
 
           <!-- Image -->
-          <div class="md:w-1/2 relative h-64 md:h-auto">
-            <!-- Fond légèrement flouté pour le texte qui déborde -->
+          <div class="hidden md:block md:w-1/2 relative">
             <div
               class="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10"
             ></div>
             <img
               src="/img/luk.jpg"
               alt="People reading books"
-              class="hidden md:block w-full h-full object-cover"
+              class="w-full h-full object-cover"
             />
           </div>
         </div>
       </div>
     </section>
+
     <section class="bg-black pb-6">
       <div class="mj-container">
         <div class="flex items-center justify-between w-full mx-auto mb-6">
