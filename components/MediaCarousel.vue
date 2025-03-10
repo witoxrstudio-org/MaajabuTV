@@ -20,16 +20,14 @@
         >
           <img
             :src="media.image"
-            class="h-32 md:h-40 lg:h-48 w-full md:w-64 lg:w-80 object-cover rounded-lg"
+            class="w-full h-48 sm:h-56 md:h-64 lg:h-72 xl:h-60 object-cover"
           />
           <!-- Icône Play centrée avec effet hover -->
-          <div
-            class="absolute inset-0 -left-7 flex items-center justify-center"
-          >
+          <div class="absolute inset-0 flex items-center justify-center">
             <img
               src="/img/btn_play.png"
               alt="Play"
-              class="w-12 h-12 transition-transform duration-300 ease-in-out transform hover:scale-110 hover:opacity-80"
+              class="w-16 h-16 transition-transform duration-300 ease-in-out transform hover:scale-110 hover:opacity-80"
             />
           </div>
         </div>
