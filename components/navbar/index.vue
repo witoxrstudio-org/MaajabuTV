@@ -100,17 +100,16 @@
         <transition name="fade">
           <nav
             v-if="menuOpen"
-            class="fixed h-auto inset-0 z-40 m-4 flex flex-grow flex-col items-center space-y-6 rounded-lg border border-gray-300 bg-gradient-to-b from-white via-white/70 to-white/40 p-8 backdrop-blur-md transition-transform duration-300 ease-out"
+            class="fixed top-0 left-0 w-full h-full z-40 flex flex-col items-center justify-center space-y-6 border border-gray-300 bg-gradient-to-b from-white via-white/70 to-white/40 p-8 backdrop-blur-md transition-transform duration-300 ease-out overflow-y-auto"
           >
             <NuxtLink
               v-for="(item, index) in menuItem"
               :key="index"
               :to="localPath(item)"
               @click="closeMenu"
-              class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl
-  transition-opacity duration-300 opacity-100 animate-fadeIn delay-{{
-    index * 100
-  }}"
+              class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl transition-opacity duration-300 opacity-100 animate-fadeIn delay-{{
+        index * 100
+      }}"
               :class="{
                 'text-blue-800 underline': isActiveLink(localPath(item)),
               }"
