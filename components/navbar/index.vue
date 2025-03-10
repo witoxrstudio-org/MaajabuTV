@@ -107,9 +107,7 @@
               :key="index"
               :to="localPath(item)"
               @click="closeMenu"
-              class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl transition-opacity duration-300 opacity-100 animate-fadeIn delay-{{
-        index * 100
-      }}"
+              class="font-semibold text-blue-400 hover:text-blue-400 hover:underline text-2xl transition-all duration-500 ease-out opacity-0 translate-y-4 animate-fadeUp delay-{{ index * 100 }}"
               :class="{
                 'text-blue-800 underline': isActiveLink(localPath(item)),
               }"
@@ -294,5 +292,19 @@ onUnmounted(() => {
 }
 .route-leave-active {
   transition: all 0.2s ease-in;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeUp {
+  animation: fadeUp 0.5s ease-out forwards;
 }
 </style>
