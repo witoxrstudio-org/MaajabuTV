@@ -46,7 +46,7 @@ const fieldslive = ref(
   "titre, description, youtube_live_url, date_live, etiquette, couverture"
 );
 const filter = {
-  slug: route.params.slug,
+  slug: { _eq: route.params.slug },
   status: { _eq: "published" },
 };
 

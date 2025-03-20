@@ -183,7 +183,6 @@ const fieldslive = ref(
 );
 const filter = {
   slug: route.params.slug,
-  status: { _eq: "published" },
 };
 const [
   {
