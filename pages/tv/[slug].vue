@@ -47,20 +47,17 @@
         <div
           class="relative w-full md:w-2/3 h-60 md:h-auto flex items-center justify-center"
         >
-          <img
-            :src="config.public.apiBase + '/assets/' + live.couverture"
-            :alt="live.titre"
-            class="w-full h-full object-cover"
-          />
-          <!-- Bouton Play -->
-          <div
-            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition"
-          >
-            <img
-              src="/img/btn_play.png"
-              alt="Play"
-              class="w-16 h-16 transition-transform transform hover:scale-110"
-            />
+          <div v-if="live.youtube_live_url" class="w-full h-full">
+            <div class="h-full">
+              <video
+                ref="player"
+                class="plyr__video-embed w-full h-full"
+                playsinline
+                controls
+              >
+                <source :src="live.youtube_live_url" type="video/youtube" />
+              </video>
+            </div>
           </div>
         </div>
 
@@ -68,6 +65,9 @@
         <div
           class="p-6 w-full md:w-1/3 rounded-2xl shadow-xl space-y-6 text-white"
         >
+          <h1 class="text-3xl font-bold sm:text-2xl text-center">
+            {{ live.titre }}
+          </h1>
           <!-- Date -->
           <div class="flex items-center space-x-3 text-sm text-gray-300">
             <i class="fas fa-calendar-alt text-blue-400"></i>
@@ -249,5 +249,19 @@ const {
     },
   }).then((res) => res[0])
 );
+
+// Intégration de Plyr (Import dynamique)
+const player = ref(null);
+
+onMounted(async () => {
+  if (player.value && live.value?.youtube_live_url) {
+    const Plyr = (await import("plyr")).default;
+    new Plyr(player.value, {
+      youtube: { noCookie: true },
+    });
+  }
+});
 </script>
+
+
 

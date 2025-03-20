@@ -1,0 +1,6 @@
+/* assets/css/global.css */
+:root {
+  --plyr-color-main: #fcf80c;
+  --plyr-video-background: rgba(0, 0, 0, 0.8);
+  --plyr-focus-visible-color: #fcf80c;
+}

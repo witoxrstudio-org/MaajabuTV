@@ -1,7 +1,11 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-  css: ["~/assets/css/main.css"],
+  css: [
+    "~/assets/css/main.css",
+    "plyr/dist/plyr.css",
+    "~/assets/css/global.css",
+  ],
   app: {
     pageTransition: { name: "fade", mode: "out-in" },
 
