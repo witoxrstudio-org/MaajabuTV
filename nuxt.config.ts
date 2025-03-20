@@ -1,6 +1,11 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag.startsWith("NuxtTransition"),
+    },
+  },
   css: [
     "~/assets/css/main.css",
     "plyr/dist/plyr.css",
