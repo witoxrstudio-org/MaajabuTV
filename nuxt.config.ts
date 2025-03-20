@@ -79,7 +79,14 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["@nuxtjs/i18n"],
+  modules: ["@nuxtjs/i18n", "nuxt-directus"],
+  runtimeConfig: {
+    public: {
+      directus: {
+        url: "https://maajabu.space",
+      },
+    },
+  },
   i18n: {
     lazy: true,
     langDir: "locales",
