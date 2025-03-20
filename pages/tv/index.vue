@@ -126,6 +126,57 @@
 const { getItems, getItemById } = useDirectusItems();
 const config = useRuntimeConfig();
 const route = useRoute();
+const videos = [
+  {
+    episode: 1,
+    title: "I Know What You Did Last Summer",
+    slug: "i-know-what-you-did-last-summer",
+    genre: "Gospel Music",
+    img: "/img/v1.jpg",
+    year: 2023,
+  },
+  {
+    episode: 2,
+    title: "1792 Days  in the last hood",
+    slug: "1792-days-of-summer",
+    genre: "Gospel Music",
+
+    img: "/img/v2.jpg",
+    year: 2024,
+  },
+  {
+    episode: 3,
+    title: "What I Hate About You",
+    slug: "what-i-hate-about-you",
+    genre: "Gospel Music",
+    img: "/img/v3.jpg",
+    year: 2022,
+  },
+  {
+    episode: 4,
+    title: "2024 Maajabu Talents",
+    slug: "2024-taajabu-talents",
+    genre: "Gospel Music",
+    img: "/img/v4.jpg",
+    year: 2024,
+  },
+  {
+    episode: 5,
+    title: "1792 Days of ummers",
+    slug: "1792-days-of-summers",
+    genre: "Gospel Music",
+    img: "/img/v5.jpg",
+    year: 2024,
+  },
+  {
+    episode: 6,
+    title: "1792 Days of mering",
+    slug: "1792-days-of-summering",
+    genre: "Gospel Music",
+    img: "/img/v6.jpg",
+    year: 2024,
+  },
+];
 
 const fieldslive = ref(
   "titre, description, youtube_live_url, date_live, etiquette, couverture"
