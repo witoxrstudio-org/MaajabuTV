@@ -211,10 +211,8 @@ const { getItemById, getItems } = useDirectusItems();
 const config = useRuntimeConfig();
 const route = useRoute();
 
-// On récupère le slug depuis l'URL
 const slug = route.params.slug;
 
-// Champs à récupérer depuis l'API
 const fieldslive = ref(
   "id, titre, description, youtube_live_url, date_live, etiquette, couverture, slug"
 );
