@@ -66,7 +66,7 @@
 
         <!-- Section des détails -->
         <div
-          class="p-6 w-full md:w-1/3 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-xl space-y-6 text-white"
+          class="p-6 w-full md:w-1/3 rounded-2xl shadow-xl space-y-6 text-white"
         >
           <!-- Date -->
           <div class="flex items-center space-x-3 text-sm text-gray-300">
