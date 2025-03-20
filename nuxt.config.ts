@@ -82,10 +82,11 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/i18n", "nuxt-directus"],
   runtimeConfig: {
     public: {
-      directus: {
-        url: "https://maajabu.space",
-      },
+      apiBase: "https://maajabu.space",
     },
+  },
+  directus: {
+    url: "https://maajabu.space",
   },
   i18n: {
     lazy: true,
