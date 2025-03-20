@@ -37,14 +37,18 @@
           </div>
         </div>
         <!-- debut -->
-
+        <div v-if="live_streams_pending">Chargement en cours...</div>
+        <div v-else-if="live_streams_error" class="text-red-500">
+          Erreur : {{ live_streams_error.message }}
+        </div>
         <div
+          v-else
           class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
-          <div
-            v-for="video in videos"
-            :key="video.slug"
-            @click="$router.push(`/tv/${video.slug}`)"
+          <NuxtLink
+            v-for="live in live_streams"
+            :key="live.id"
+            :to="`/tv/${live.slug}`"
             class="group bg-gray-900 cursor-pointer rounded-lg relative"
           >
             <div
@@ -52,8 +56,8 @@
             >
               <!-- Image de fond -->
               <img
-                :src="video.img"
-                alt="Description de l'image"
+                :src="config.public.apiBase + '/assets/' + live.couverture"
+                :alt="live.titre"
                 class="w-full h-full object-cover"
               />
 
@@ -78,12 +82,12 @@
             </div>
 
             <div class="my-1 p-2">
-              <p class="text-xs text-gray-400">{{ video.genre }}</p>
+              <p class="text-xs text-gray-400">genre</p>
               <p
                 class="text-white font-bold group-hover:underline transition duration-300"
               >
-                {{ video.title }}
-                <span class="text-gray-400">({{ video.year }})</span>
+                {{ live.titre }}
+                <span class="text-gray-400">({{ live.date_live }})</span>
               </p>
               <div
                 class="absolute bottom-2 right-2 transform group-hover:rotate-90 transition duration-300"
@@ -104,7 +108,7 @@
                 </svg>
               </div>
             </div>
-          </div>
+          </NuxtLink>
         </div>
 
         <!-- fin -->
@@ -119,86 +123,24 @@
         </div>
       </div>
     </section>
-    <img :src="config.public.apiBase + '/assets/' + couverture" alt="" />
   </div>
 </template>
 <script setup>
-const { getItems, getItemById } = useDirectusItems();
+const { getItems } = useDirectusItems();
 const config = useRuntimeConfig();
-const route = useRoute();
-const videos = [
-  {
-    episode: 1,
-    title: "I Know What You Did Last Summer",
-    slug: "i-know-what-you-did-last-summer",
-    genre: "Gospel Music",
-    img: "/img/v1.jpg",
-    year: 2023,
-  },
-  {
-    episode: 2,
-    title: "1792 Days  in the last hood",
-    slug: "1792-days-of-summer",
-    genre: "Gospel Music",
-
-    img: "/img/v2.jpg",
-    year: 2024,
-  },
-  {
-    episode: 3,
-    title: "What I Hate About You",
-    slug: "what-i-hate-about-you",
-    genre: "Gospel Music",
-    img: "/img/v3.jpg",
-    year: 2022,
-  },
-  {
-    episode: 4,
-    title: "2024 Maajabu Talents",
-    slug: "2024-taajabu-talents",
-    genre: "Gospel Music",
-    img: "/img/v4.jpg",
-    year: 2024,
-  },
-  {
-    episode: 5,
-    title: "1792 Days of ummers",
-    slug: "1792-days-of-summers",
-    genre: "Gospel Music",
-    img: "/img/v5.jpg",
-    year: 2024,
-  },
-  {
-    episode: 6,
-    title: "1792 Days of mering",
-    slug: "1792-days-of-summering",
-    genre: "Gospel Music",
-    img: "/img/v6.jpg",
-    year: 2024,
-  },
-];
 
 const fieldslive = ref(
-  "titre, description, youtube_live_url, date_live, etiquette, couverture"
+  "id, titre, description, youtube_live_url, date_live, etiquette, couverture, slug"
 );
-const filter = {
-  slug: route.params.slug,
-};
-const [
-  {
-    data: live_streams,
-    pending: live_streams_pending,
-    error: live_streams_error,
-    refresh: live_streams_refresh,
-  },
-] = await Promise.all([
-  useAsyncData("live_streams", () =>
-    getItems({
-      collection: "live_streams",
-      params: { fields: fieldslive.value, limit: 6 },
-    })
-  ),
-]);
 
-console.log(config.public.apiBase);
+const {
+  data: live_streams,
+  pending: live_streams_pending,
+  error: live_streams_error,
+} = await useAsyncData("live_streams", () =>
+  getItems({
+    collection: "live_streams",
+    params: { fields: fieldslive.value, limit: 6 },
+  })
+);
 </script>

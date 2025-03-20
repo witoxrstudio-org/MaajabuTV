@@ -1,5 +1,9 @@
 <template>
-  <div class="relative w-full bg-black">
+  <div v-if="live_pending">Chargement en cours...</div>
+  <div v-else-if="live_error" class="text-red-500">
+    Erreur : {{ live_error.message }}
+  </div>
+  <div v-else class="relative w-full bg-black">
     <section
       class="relative w-full h-[300px] bg-cover bg-center flex items-center md:h-[300px] sm:h-[200px]"
       style="background-image: url('/img/luk.jpg')"
@@ -9,7 +13,7 @@
       ></div>
       <div class="relative z-10 ml-6 text-white mj-container mt-28">
         <h1 class="text-4xl font-bold sm:text-3xl">
-          {{ video.title }}
+          {{ live.titre }}
         </h1>
         <p class="mt-2 text-gray-300 sm:text-sm text-xs">Maajabu TV</p>
       </div>
@@ -42,8 +46,8 @@
           class="relative w-full md:w-2/3 h-60 bg-gray-600 flex items-center justify-center rounded-lg mt-4 md:mt-0 md:mr-4"
         >
           <img
-            :src="video.img"
-            alt="Video Thumbnail"
+            :src="config.public.apiBase + '/assets/' + live.couverture"
+            :alt="live.titre"
             class="w-full h-full object-cover rounded-l-lg"
           />
           <!-- Image du bouton play -->
@@ -60,21 +64,35 @@
 
         <!-- Section des détails -->
         <div class="mt-4 md:mt-0 md:w-1/3 space-y-3 p-6">
-          <h1 class="text-3xl font-bold text-white">{{ video.title }}</h1>
+          <h1 class="text-3xl font-bold text-white">{{ live.titre }}</h1>
 
           <div class="flex items-center text-gray-400">
             <i class="fas fa-film mr-2"></i>
-            <p>{{ video.genre }}</p>
+            <p>{{ live.date_live }}</p>
           </div>
 
           <div class="flex items-center text-gray-400">
             <i class="fas fa-calendar-alt mr-2"></i>
-            <p>{{ video.year }}</p>
+            <p>{{ live.description }}</p>
           </div>
 
           <div class="flex items-center text-gray-500">
             <i class="fas fa-clock mr-2"></i>
-            <p>Durée : 4 min</p>
+            <p
+              v-if="live.etiquette"
+              class="inline-block bg-blue-100 text-blue-700 px-3 py-1 text-sm rounded mb-4"
+            >
+              {{ live.etiquette }}
+            </p>
+            <div v-if="live.youtube_live_url" class="mt-4">
+              <a
+                :href="live.youtube_live_url"
+                target="_blank"
+                class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+              >
+                Regarder en direct sur YouTube
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -184,7 +202,10 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+const { getItemById, getItems } = useDirectusItems();
+
+const config = useRuntimeConfig();
+
 const route = useRoute();
 const videos = [
   {
@@ -238,4 +259,30 @@ const videos = [
   },
 ];
 const video = videos.find((v) => v.slug === route.params.slug) || {};
+// On récupère le slug depuis l'URL
+const slug = route.params.slug;
+
+// Champs à récupérer depuis l'API
+const fieldslive = ref(
+  "titre, description, youtube_live_url, date_live, etiquette, couverture, slug"
+);
+
+// Appel API pour récupérer les détails du live spécifique
+const {
+  data: live,
+  pending: live_pending,
+  error: live_error,
+} = await useAsyncData(`live_${slug}`, () =>
+  getItems({
+    collection: "live_streams",
+    params: {
+      fields: fieldslive.value,
+      filter: {
+        slug: { _eq: slug },
+        status: { _eq: "published" },
+      },
+      limit: 1,
+    },
+  }).then((res) => res[0])
+);
 </script>
