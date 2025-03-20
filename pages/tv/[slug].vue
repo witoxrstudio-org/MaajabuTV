@@ -40,19 +40,21 @@
         </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg flex flex-col md:flex-row">
+      <div
+        class="bg-gray-900 rounded-lg flex flex-col md:flex-row overflow-hidden shadow-lg"
+      >
         <!-- Section de la vidéo -->
         <div
-          class="relative w-full md:w-2/3 h-60 bg-gray-600 flex items-center justify-center rounded-lg mt-4 md:mt-0 md:mr-4"
+          class="relative w-full md:w-2/3 h-60 md:h-auto flex items-center justify-center"
         >
           <img
             :src="config.public.apiBase + '/assets/' + live.couverture"
             :alt="live.titre"
-            class="w-full h-full object-cover rounded-l-lg"
+            class="w-full h-full object-cover"
           />
-          <!-- Image du bouton play -->
+          <!-- Bouton Play -->
           <div
-            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-lg transition-opacity hover:bg-opacity-50"
+            class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-60 transition"
           >
             <img
               src="/img/btn_play.png"
@@ -63,36 +65,39 @@
         </div>
 
         <!-- Section des détails -->
-        <div class="mt-4 md:mt-0 md:w-1/3 space-y-3 p-6">
-          <h1 class="text-3xl font-bold text-white">{{ live.titre }}</h1>
-
-          <div class="flex items-center text-gray-400">
-            <i class="fas fa-film mr-2"></i>
+        <div
+          class="p-6 w-full md:w-1/3 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-xl space-y-6 text-white"
+        >
+          <!-- Date -->
+          <div class="flex items-center space-x-3 text-sm text-gray-300">
+            <i class="fas fa-calendar-alt text-blue-400"></i>
             <p>{{ live.date_live }}</p>
           </div>
 
-          <div class="flex items-center text-gray-400">
-            <i class="fas fa-calendar-alt mr-2"></i>
+          <!-- Description -->
+          <div class="flex items-start space-x-3 text-sm text-gray-300">
+            <i class="fas fa-info-circle text-green-400 mt-0.5"></i>
             <p>{{ live.description }}</p>
           </div>
 
-          <div class="flex items-center text-gray-500">
-            <i class="fas fa-clock mr-2"></i>
-            <p
-              v-if="live.etiquette"
-              class="inline-block bg-blue-100 text-blue-700 px-3 py-1 text-sm rounded mb-4"
+          <!-- Etiquette -->
+          <div v-if="live.etiquette" class="flex flex-wrap gap-2">
+            <span
+              class="inline-flex items-center bg-blue-200 text-blue-800 px-3 py-1 rounded-full text-xs font-medium shadow hover:bg-blue-300 transition"
             >
-              {{ live.etiquette }}
-            </p>
-            <div v-if="live.youtube_live_url" class="mt-4">
-              <a
-                :href="live.youtube_live_url"
-                target="_blank"
-                class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-              >
-                Regarder en direct sur YouTube
-              </a>
-            </div>
+              <i class="fas fa-tag mr-1 text-xs"></i> {{ live.etiquette }}
+            </span>
+          </div>
+
+          <!-- Bouton YouTube -->
+          <div v-if="live.youtube_live_url">
+            <a
+              :href="live.youtube_live_url"
+              target="_blank"
+              class="inline-flex items-center justify-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-xl transition shadow-lg hover:scale-105"
+            >
+              <i class="fab fa-youtube text-lg"></i> Regarder en direct
+            </a>
           </div>
         </div>
       </div>
