@@ -49,14 +49,13 @@
         >
           <div v-if="live.youtube_live_url" class="w-full h-full">
             <div class="h-full">
-              <video
-                ref="player"
+              <div
                 class="plyr__video-embed w-full h-full"
-                playsinline
-                controls
-              >
-                <source :src="live.youtube_live_url" type="video/youtube" />
-              </video>
+                id="player"
+                ref="player"
+                data-plyr-provider="youtube"
+                :data-plyr-embed-id="live.youtube_live_url"
+              ></div>
             </div>
           </div>
         </div>
