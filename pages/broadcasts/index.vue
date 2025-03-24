@@ -36,90 +36,94 @@
             ></div>
           </div>
         </div>
-        <div class="bg-black pb-6">
-          <div
-            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-          >
-            <div v-for="movie in movie" :key="movie.id" class="relative group">
-              <div
-                class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group"
+        <div class="container mx-auto py-8">
+          <!-- Barre de sélection + image et titre de l’émission -->
+          <div class="flex flex-col md:flex-row items-center gap-6 mb-6">
+            <div class="w-full md:w-1/2">
+              <label class="block mb-2 font-semibold">
+                Choisir une émission
+              </label>
+              <select
+                v-model="filtreEmission"
+                @change="changerFiltre(filtreEmission)"
+                class="p-2 border rounded w-full"
               >
-                <img
-                  v-if="movie.image"
-                  :src="movie.image"
-                  :alt="movie.title"
-                  class="w-full h-56 object-cover"
-                />
-                <div v-else class="w-full h-56 bg-gray-700"></div>
-
-                <div class="p-3">
-                  <h3 class="text-white text-sm md:text-base font-semibold">
-                    {{ movie.title }} ({{ movie.year }})
-                  </h3>
-                  <p class="text-gray-400 text-xs md:text-sm">
-                    {{ movie.genre }}
-                  </p>
-                </div>
-
-                <div
-                  class="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-500 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity text-center p-4"
+                <option value="All">Toutes les émissions</option>
+                <option
+                  v-for="emission in emissions"
+                  :key="emission.id"
+                  :value="emission.id"
                 >
-                  <h3 class="text-white text-sm md:text-lg font-semibold">
-                    {{ movie.title }} ({{ movie.year }})
-                  </h3>
-                  <p class="text-gray-300 text-xs md:text-sm">
-                    {{ movie.genre }}
-                  </p>
-
-                  <div class="mt-4 flex gap-3 justify-center sm:justify-start">
-                    <!-- Bouton Lecture -->
-                    <button
-                      class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
-                        />
-                      </svg>
-                    </button>
-
-                    <!-- Bouton Favoris -->
-                    <button
-                      class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-red-500"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+                  {{ emission.titre }}
+                </option>
+              </select>
+            </div>
+            <div
+              v-if="emissionSelectionnee"
+              class="w-full md:w-1/2 flex items-center gap-4"
+            >
+              <img
+                :src="emissionSelectionnee.image_pochettes"
+                alt="Image de l'émission"
+                class="w-24 h-24 object-cover rounded-lg"
+              />
+              <div>
+                <h2 class="text-lg font-bold">
+                  {{ emissionSelectionnee.titre }}
+                </h2>
+                <p class="text-sm text-gray-600">
+                  {{ emissionSelectionnee.description }}
+                </p>
               </div>
             </div>
+          </div>
+
+          <!-- Grille des épisodes -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              v-for="episode in episodesAffiches"
+              :key="episode.id"
+              class="border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+            >
+              <!-- :src="episode.emission_id?.image_pochettes" -->
+              <img
+                :src="episode.emission_id?.image_pochettes"
+                alt="Image de l'émission"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-4">
+                <h2 class="text-xl font-bold mb-2">{{ episode.titre }}</h2>
+                <p class="text-sm text-gray-600 mb-2">
+                  {{ formatDateTime(episode.date_diffusion) }} •
+                  {{ episode.duree }} mins
+                </p>
+                <p class="text-gray-700 mb-4">{{ episode.description }}</p>
+                <button
+                  @click="afficherDetails(episode.slug)"
+                  class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+                >
+                  Voir détails
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="flex justify-center mt-8 space-x-2">
+            <button
+              v-for="n in nombreTotalPages"
+              :key="n"
+              @click="pageActuelle = n"
+              :class="[
+                'px-4 py-2 border rounded',
+                {
+                  'bg-blue-600 text-white': pageActuelle === n,
+                  'bg-white': pageActuelle !== n,
+                },
+              ]"
+            >
+              {{ n }}
+            </button>
           </div>
         </div>
       </div>
@@ -127,76 +131,176 @@
   </div>
 </template>
 <script setup>
-const movie = [
-  {
-    id: 1,
-    title: "Psaumes",
-    year: 2019,
-    genre: "Musical, Gospel",
-    image: "/img/e1.png",
-  },
-  {
-    id: 2,
-    title: "Reponse",
-    year: 2019,
-    genre: "Musical, Gospel",
-    image: "/img/e2.png",
-  },
-  {
-    id: 3,
-    title: "KDO",
-    year: 2016,
-    genre: "Musical, Gospel",
-    image: "/img/e3.jpeg",
-  },
-  {
-    id: 4,
-    title: "Amour Inco.",
-    year: 2024,
-    genre: "Musical, Gospel",
-    image: "/img/e4.jpg",
-  },
-  {
-    id: 5,
-    title: "Jésus",
-    year: 2023,
-    genre: "Musical, Gospel",
-    image: "/img/e5.jpg",
-  },
-  {
-    id: 6,
-    title: "Wondefull",
-    year: 2022,
-    genre: "Musical, Gospel",
-    image: "/img/e6.jpg",
-  },
-  {
-    id: 7,
-    title: "Historia",
-    year: 2021,
-    genre: "Musical, Gospel",
-    image: "/img/e7.jpg",
-  },
-  {
-    id: 8,
-    title: "Sois mon Dieu",
-    year: 2017,
-    genre: "Musical, Gospel",
-    image: "/img/e8.jpg",
-  },
-  {
-    id: 9,
-    title: "Emmanuel",
-    year: 2020,
-    genre: "Musical, Gospel",
-    image: "/img/e9.jpg",
-  },
-  {
-    id: 10,
-    title: "Monde Electrifié",
-    year: 2019,
-    genre: "Musical, Gospel",
-    image: "/img/e10.jpg",
-  },
-];
+import { ref, computed, onMounted } from "vue";
+import { useRuntimeConfig, navigateTo } from "#app";
+const { t, locale } = useI18n();
+
+// Déclaration des variables réactives
+const episodes = ref([]);
+const emissions = ref([]);
+const filtreEmission = ref("All");
+const loading = ref(true);
+const error = ref(null);
+const pageActuelle = ref(1);
+const itemsParPage = 6;
+
+// Récupération des données depuis Directus
+const fetchData = async () => {
+  loading.value = true;
+  try {
+    const config = useRuntimeConfig();
+    const directusUrl = config.public.directus.url;
+
+    const episodesResponse = await fetch(
+      `${directusUrl}/items/episodes?fields=*,emission_id.*`
+    );
+    if (!episodesResponse.ok)
+      throw new Error("Erreur lors de la récupération des épisodes.");
+    const episodesData = await episodesResponse.json();
+
+    // Vérification et génération du slug si absent
+    episodes.value = episodesData.data.map((episode) => ({
+      ...episode,
+      slug: episode.slug || episode.titre.toLowerCase().replace(/\s+/g, "-"),
+    }));
+
+    console.log("Épisodes récupérés :", episodes.value);
+
+    const emissionsResponse = await fetch(`${directusUrl}/items/emissions`);
+    if (!emissionsResponse.ok)
+      throw new Error("Erreur lors de la récupération des émissions.");
+    const emissionsData = await emissionsResponse.json();
+    emissions.value = [
+      "All",
+      ...emissionsData.data.map((e) => ({
+        id: e.id,
+        titre: e.titre,
+      })),
+    ];
+  } catch (err) {
+    error.value = err.message;
+  } finally {
+    loading.value = false;
+  }
+};
+const emissionSelectionnee = computed(() => {
+  if (filtreEmission.value === "All") return null;
+  return emissions.value.find((e) => e.id === filtreEmission.value);
+});
+// Charger les données
+onMounted(() => {
+  fetchData();
+});
+
+// Filtrage basé sur l'émission
+const episodesFiltres = computed(() => {
+  const data =
+    filtreEmission.value === "All"
+      ? episodes.value
+      : episodes.value.filter(
+          (episode) => episode.emission_id?.id === filtreEmission.value
+        );
+
+  // Tri décroissant par date_diffusion
+  return data.sort(
+    (a, b) => new Date(b.date_diffusion) - new Date(a.date_diffusion)
+  );
+});
+
+// Pagination
+const nombreTotalPages = computed(() =>
+  Math.ceil(episodesFiltres.value.length / itemsParPage)
+);
+const episodesAffiches = computed(() => {
+  const debut = (pageActuelle.value - 1) * itemsParPage;
+  return episodesFiltres.value.slice(debut, debut + itemsParPage);
+});
+const changerFiltre = (emissionId) => {
+  filtreEmission.value = emissionId;
+  pageActuelle.value = 1;
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("filtreEmission", emissionId);
+  }
+};
+// Redirection vers la page détail
+const afficherDetails = (slug) => {
+  if (!slug) {
+    console.error("Erreur : le slug est indéfini !");
+    return;
+  }
+  navigateTo(`/broadcast/${slug}`); // <--- Ici on redirige bien vers /broadcast/slug
+};
+const formatDateTime = (date) => {
+  const optionsDate = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Date(date).toLocaleDateString("fr-FR", optionsDate);
+  return `${formattedDate}`;
+};
 </script>
+<style>
+/* Font Awesome import */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+/* Loader Styles */
+.loader {
+  z-index: 99 !important;
+  width: 36px;
+  height: 36px;
+  display: block;
+  margin: 10px auto;
+  position: relative;
+  color: #f0efef;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  -webkit-animation: rotation 1s linear infinite;
+}
+
+.loader::after,
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  transform: scale(0.5) translate(0, 0);
+  background-color: #055fc5;
+  border-radius: 50%;
+  animation: animloader 1s infinite ease-in-out;
+  -webkit-transform: scale(0.5) translate(0, 0);
+  -moz-transform: scale(0.5) translate(0, 0);
+  -ms-transform: scale(0.5) translate(0, 0);
+  -o-transform: scale(0.5) translate(0, 0);
+}
+
+.loader::before {
+  background-color: #02ab4b;
+  transform: scale(0.5) translate(-36px, -36px);
+  -webkit-transform: scale(0.5) translate(-36px, -36px);
+  -moz-transform: scale(0.5) translate(-36px, -36px);
+  -ms-transform: scale(0.5) translate(-36px, -36px);
+  -o-transform: scale(0.5) translate(-36px, -36px);
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}
+
+@keyframes animloader {
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+</style>
