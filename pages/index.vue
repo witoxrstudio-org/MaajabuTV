@@ -168,7 +168,7 @@
       <div class="mj-container">
         <div class="flex items-center justify-between w-full mx-auto mb-6">
           <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
-            <span class="text-blue-500">Nos</span> Meilleurs Albums
+            <span class="text-blue-500">Nos</span> PlayLists
           </h2>
           <a
             href="#"
