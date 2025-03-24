@@ -46,7 +46,7 @@
               <select
                 v-model="filtreEmission"
                 @change="changerFiltre(filtreEmission)"
-                class="p-2 border rounded w-full"
+                class="p-2 border rounded w-full text-black"
               >
                 <option value="All">Toutes les émissions</option>
                 <option
@@ -118,7 +118,7 @@
                 'px-4 py-2 border rounded',
                 {
                   'bg-blue-600 text-white': pageActuelle === n,
-                  'bg-white': pageActuelle !== n,
+                  'bg-white text-black': pageActuelle !== n,
                 },
               ]"
             >
@@ -228,7 +228,7 @@ const afficherDetails = (slug) => {
     console.error("Erreur : le slug est indéfini !");
     return;
   }
-  navigateTo(`/broadcast/${slug}`); // <--- Ici on redirige bien vers /broadcast/slug
+  navigateTo(`/broadcast/${slug}`);
 };
 const formatDateTime = (date) => {
   const optionsDate = { year: "numeric", month: "long", day: "numeric" };
@@ -236,71 +236,3 @@ const formatDateTime = (date) => {
   return `${formattedDate}`;
 };
 </script>
-<style>
-/* Font Awesome import */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
-/* Loader Styles */
-.loader {
-  z-index: 99 !important;
-  width: 36px;
-  height: 36px;
-  display: block;
-  margin: 10px auto;
-  position: relative;
-  color: #f0efef;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  -webkit-animation: rotation 1s linear infinite;
-}
-
-.loader::after,
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 50%;
-  left: 50%;
-  transform: scale(0.5) translate(0, 0);
-  background-color: #055fc5;
-  border-radius: 50%;
-  animation: animloader 1s infinite ease-in-out;
-  -webkit-transform: scale(0.5) translate(0, 0);
-  -moz-transform: scale(0.5) translate(0, 0);
-  -ms-transform: scale(0.5) translate(0, 0);
-  -o-transform: scale(0.5) translate(0, 0);
-}
-
-.loader::before {
-  background-color: #02ab4b;
-  transform: scale(0.5) translate(-36px, -36px);
-  -webkit-transform: scale(0.5) translate(-36px, -36px);
-  -moz-transform: scale(0.5) translate(-36px, -36px);
-  -ms-transform: scale(0.5) translate(-36px, -36px);
-  -o-transform: scale(0.5) translate(-36px, -36px);
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-  }
-}
-
-@keyframes animloader {
-  50% {
-    transform: scale(1) translate(-50%, -50%);
-  }
-}
-</style>
