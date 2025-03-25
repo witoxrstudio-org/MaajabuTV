@@ -8,12 +8,20 @@
       <div
         class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
       ></div>
-      <div class="relative z-10 ml-6 text-white mj-container mt-28">
-        <h1 class="text-4xl font-bold sm:text-3xl">
-          {{ episode.emission_id?.titre }}
+      <div
+        class="relative z-10 text-white mj-container mt-16 sm:mt-24 px-4 sm:px-6 lg:px-8"
+      >
+        <!-- Titre -->
+        <h1
+          class="text-3xl sm:text-4xl font-bold flex flex-wrap items-center gap-2"
+        >
+          <span class="text-blue-400">{{ episode.emission_id?.titre }}</span>
+          <span class="text-white">{{ episode.titre }}</span>
         </h1>
-        <p class="mt-2 text-gray-300 sm:text-sm text-xs">
-          {{ episode.titre }}
+
+        <!-- Description -->
+        <p class="mt-2 text-gray-300 text-sm sm:text-base leading-relaxed">
+          {{ episode.description }}
         </p>
       </div>
     </section>
@@ -40,7 +48,7 @@
         </div>
         <div class="flex flex-col md:flex-row items-start gap-6">
           <!-- Vidéo ou Image de l'émission -->
-          <div class="w-full md:w-1/2">
+          <div class="w-full md:w-2/2">
             <div v-if="episode.youtube_video_id" class="relative w-full">
               <div class="h-0 pb-[56.25%] relative">
                 <!-- Ratio 16:9 -->
@@ -50,6 +58,27 @@
                   data-plyr-provider="youtube"
                   :data-plyr-embed-id="episode.youtube_video_id"
                 ></div>
+                <div class="flex items-center text-sm text-gray-600 gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+                    />
+                  </svg>
+
+                  <span
+                    >{{ formatDateTime(episode.date_diffusion) }} •
+                    {{ episode.duree }} mins</span
+                  >
+                </div>
               </div>
             </div>
             <div v-else>
@@ -60,25 +89,7 @@
               />
             </div>
           </div>
-
-          <!-- Détails de l'épisode -->
-          <div class="w-full md:w-1/2 space-y-4">
-            <h1 class="text-2xl font-bold">{{ episode.titre }}</h1>
-            <h2 class="text-lg text-gray-600">
-              Émission :
-              <span class="font-semibold">{{
-                episode.emission_id?.titre
-              }}</span>
-            </h2>
-            <p class="text-sm text-gray-600">
-              {{ formatDateTime(episode.date_diffusion) }} •
-              {{ episode.duree }} mins
-            </p>
-            <p class="text-gray-700">{{ episode.description }}</p>
-          </div>
         </div>
-
-        <!-- Message de chargement -->
       </div>
     </section>
   </div>
