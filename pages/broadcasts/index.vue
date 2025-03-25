@@ -38,15 +38,15 @@
         </div>
         <div class="container mx-auto py-8">
           <!-- Barre de sélection + image et titre de l’émission -->
-          <div class="flex flex-col md:flex-row items-center gap-6 mb-6">
+          <div
+            class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 p-4"
+          >
+            <!-- Sélecteur d'émission -->
             <div class="w-full md:w-1/2">
-              <label class="block mb-2 font-semibold">
-                Choisir une émission
-              </label>
               <select
                 v-model="filtreEmission"
                 @change="changerFiltre(filtreEmission)"
-                class="p-2 border rounded w-full text-black"
+                class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="All">Toutes les émissions</option>
                 <option
@@ -58,46 +58,59 @@
                 </option>
               </select>
             </div>
+
+            <!-- Détails de l'émission sélectionnée -->
             <div
               v-if="emissionSelectionnee"
-              class="w-full md:w-1/2 flex items-center gap-4"
+              class="w-full md:w-1/2 flex items-center gap-4 bg-white p-4 rounded-lg shadow"
             >
               <img
                 :src="emissionSelectionnee.image_pochettes"
                 alt="Image de l'émission"
-                class="w-24 h-24 object-cover rounded-lg"
+                class="w-24 h-24 object-cover rounded-lg shadow-md"
               />
               <div>
-                <h2 class="text-lg font-bold">
+                <h2 class="text-lg font-semibold text-gray-900">
                   {{ emissionSelectionnee.titre }}
                 </h2>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-gray-600 line-clamp-3">
                   {{ emissionSelectionnee.description }}
                 </p>
               </div>
             </div>
           </div>
-
+          <h2
+            v-if="emissionSelectionnee"
+            class="text-2xl font-bold mb-4 text-center"
+          >
+            Émission : {{ emissionSelectionnee.titre }}
+          </h2>
           <!-- Grille des épisodes -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             <div
               v-for="episode in episodesAffiches"
               :key="episode.id"
-              class="border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+              class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
             >
-              <NuxtLink :to="`/broadcasts/${episode.slug}`">
+              <NuxtLink :to="`/broadcasts/${episode.slug}`" class="block">
                 <img
                   :src="episode.emission_id?.image_pochettes"
                   alt="Image de l'émission"
-                  class="w-full h-48 object-cover"
+                  class="w-full h-56 object-cover"
                 />
                 <div class="p-4">
-                  <h2 class="text-xl font-bold mb-2">{{ episode.titre }}</h2>
-                  <p class="text-sm text-gray-600 mb-2">
+                  <h2
+                    class="text-lg md:text-xl font-semibold text-gray-900 mb-1 line-clamp-2"
+                  >
+                    {{ episode.titre }}
+                  </h2>
+                  <p class="text-sm text-gray-500 mb-2">
                     {{ formatDateTime(episode.date_diffusion) }} •
                     {{ episode.duree }} mins
                   </p>
-                  <p class="text-gray-700 mb-4">{{ episode.description }}</p>
+                  <p class="text-gray-700 text-sm line-clamp-3">
+                    {{ episode.description }}
+                  </p>
                 </div>
               </NuxtLink>
             </div>
@@ -109,13 +122,12 @@
               v-for="n in nombreTotalPages"
               :key="n"
               @click="pageActuelle = n"
-              :class="[
-                'px-4 py-2 border rounded',
-                {
-                  'bg-blue-600 text-white': pageActuelle === n,
-                  'bg-white text-black': pageActuelle !== n,
-                },
-              ]"
+              class="px-4 py-2 border rounded-lg transition duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400"
+              :class="{
+                'bg-blue-600 text-white border-blue-600': pageActuelle === n,
+                'bg-white text-gray-700 hover:bg-gray-100 border-gray-300':
+                  pageActuelle !== n,
+              }"
             >
               {{ n }}
             </button>
@@ -169,7 +181,10 @@ const fetchData = async () => {
     loading.value = false;
   }
 };
-
+const emissionSelectionnee = computed(() => {
+  if (filtreEmission.value === "All") return null;
+  return emissions.value.find((e) => e.id === filtreEmission.value);
+});
 onMounted(() => {
   fetchData();
 });
