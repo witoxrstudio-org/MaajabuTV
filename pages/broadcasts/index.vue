@@ -46,7 +46,7 @@
               <select
                 v-model="filtreEmission"
                 @change="changerFiltre(filtreEmission)"
-                class="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                class="w-full p-3 border border-gray-600 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="All">Toutes les émissions</option>
                 <option
@@ -86,11 +86,11 @@
             Émission : {{ emissionSelectionnee.titre }}
           </h2>
           <!-- Grille des épisodes -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+          <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             <div
               v-for="episode in episodesAffiches"
               :key="episode.id"
-              class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
+              class="bg-white overflow-hidden shadow-md hover:shadow-lg transition duration-300 group relative"
             >
               <NuxtLink :to="`/broadcasts/${episode.slug}`" class="block">
                 <img
@@ -113,6 +113,22 @@
                   </p>
                 </div>
               </NuxtLink>
+              <!-- Bouton Voir plus -->
+              <div class="absolute bottom-2 right-2 group">
+                <div class="relative">
+                  <p
+                    class="text-sm text-blue-500 group-hover:text-blue-700 cursor-pointer flex items-center"
+                  >
+                    <span>Voir plus</span>
+                    <i
+                      class="fas fa-arrow-right px-4 ml-1 transform group-hover:translate-x-2 transition-transform duration-300"
+                    ></i>
+                  </p>
+                  <span
+                    class="absolute left-0 bottom-0 h-0.5 bg-blue-500 w-0 group-hover:w-full transition-all duration-300"
+                  ></span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -122,7 +138,7 @@
               v-for="n in nombreTotalPages"
               :key="n"
               @click="pageActuelle = n"
-              class="px-4 py-2 border rounded-lg transition duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400"
+              class="px-4 py-2 border transition duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400"
               :class="{
                 'bg-blue-600 text-white border-blue-600': pageActuelle === n,
                 'bg-white text-gray-700 hover:bg-gray-100 border-gray-300':
