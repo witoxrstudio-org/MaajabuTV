@@ -85,26 +85,21 @@
               :key="episode.id"
               class="border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
             >
-              <!-- :src="episode.emission_id?.image_pochettes" -->
-              <img
-                :src="episode.emission_id?.image_pochettes"
-                alt="Image de l'émission"
-                class="w-full h-48 object-cover"
-              />
-              <div class="p-4">
-                <h2 class="text-xl font-bold mb-2">{{ episode.titre }}</h2>
-                <p class="text-sm text-gray-600 mb-2">
-                  {{ formatDateTime(episode.date_diffusion) }} •
-                  {{ episode.duree }} mins
-                </p>
-                <p class="text-gray-700 mb-4">{{ episode.description }}</p>
-                <button
-                  @click="afficherDetails(episode.slug)"
-                  class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                  Voir détails
-                </button>
-              </div>
+              <NuxtLink :to="`/broadcasts/${episode.slug}`">
+                <img
+                  :src="episode.emission_id?.image_pochettes"
+                  alt="Image de l'émission"
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-4">
+                  <h2 class="text-xl font-bold mb-2">{{ episode.titre }}</h2>
+                  <p class="text-sm text-gray-600 mb-2">
+                    {{ formatDateTime(episode.date_diffusion) }} •
+                    {{ episode.duree }} mins
+                  </p>
+                  <p class="text-gray-700 mb-4">{{ episode.description }}</p>
+                </div>
+              </NuxtLink>
             </div>
           </div>
 
@@ -132,10 +127,8 @@
 </template>
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useRuntimeConfig, navigateTo } from "#app";
-const { t, locale } = useI18n();
+import { useRuntimeConfig } from "#app";
 
-// Déclaration des variables réactives
 const episodes = ref([]);
 const emissions = ref([]);
 const filtreEmission = ref("All");
@@ -144,7 +137,6 @@ const error = ref(null);
 const pageActuelle = ref(1);
 const itemsParPage = 6;
 
-// Récupération des données depuis Directus
 const fetchData = async () => {
   loading.value = true;
   try {
@@ -158,13 +150,10 @@ const fetchData = async () => {
       throw new Error("Erreur lors de la récupération des épisodes.");
     const episodesData = await episodesResponse.json();
 
-    // Vérification et génération du slug si absent
     episodes.value = episodesData.data.map((episode) => ({
       ...episode,
       slug: episode.slug || episode.titre.toLowerCase().replace(/\s+/g, "-"),
     }));
-
-    console.log("Épisodes récupérés :", episodes.value);
 
     const emissionsResponse = await fetch(`${directusUrl}/items/emissions`);
     if (!emissionsResponse.ok)
@@ -172,10 +161,7 @@ const fetchData = async () => {
     const emissionsData = await emissionsResponse.json();
     emissions.value = [
       "All",
-      ...emissionsData.data.map((e) => ({
-        id: e.id,
-        titre: e.titre,
-      })),
+      ...emissionsData.data.map((e) => ({ id: e.id, titre: e.titre })),
     ];
   } catch (err) {
     error.value = err.message;
@@ -183,16 +169,11 @@ const fetchData = async () => {
     loading.value = false;
   }
 };
-const emissionSelectionnee = computed(() => {
-  if (filtreEmission.value === "All") return null;
-  return emissions.value.find((e) => e.id === filtreEmission.value);
-});
-// Charger les données
+
 onMounted(() => {
   fetchData();
 });
 
-// Filtrage basé sur l'émission
 const episodesFiltres = computed(() => {
   const data =
     filtreEmission.value === "All"
@@ -200,13 +181,10 @@ const episodesFiltres = computed(() => {
       : episodes.value.filter(
           (episode) => episode.emission_id?.id === filtreEmission.value
         );
-
-  // Tri décroissant par date_diffusion
   return data.sort(
     (a, b) => new Date(b.date_diffusion) - new Date(a.date_diffusion)
   );
 });
-
 // Pagination
 const nombreTotalPages = computed(() =>
   Math.ceil(episodesFiltres.value.length / itemsParPage)
@@ -222,17 +200,9 @@ const changerFiltre = (emissionId) => {
     localStorage.setItem("filtreEmission", emissionId);
   }
 };
-// Redirection vers la page détail
-const afficherDetails = (slug) => {
-  if (!slug) {
-    console.error("Erreur : le slug est indéfini !");
-    return;
-  }
-  navigateTo(`/broadcast/${slug}`);
-};
+
 const formatDateTime = (date) => {
   const optionsDate = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = new Date(date).toLocaleDateString("fr-FR", optionsDate);
-  return `${formattedDate}`;
+  return new Date(date).toLocaleDateString("fr-FR", optionsDate);
 };
 </script>
