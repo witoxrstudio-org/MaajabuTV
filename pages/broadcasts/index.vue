@@ -19,7 +19,7 @@
     </section>
 
     <!-- Contenu principal -->
-    <section class="bg-black text-white py-8">
+    <section class="bg-black text-white py-7">
       <div class="mj-container bg-black px-4">
         <div class="mb-8 flex items-center justify-between space-x-4">
           <div class="whitespace-nowrap aos-init aos-animate">
@@ -39,7 +39,7 @@
         <div class="container mx-auto py-8">
           <!-- Barre de sélection + image et titre de l’émission -->
           <div
-            class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 p-4"
+            class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6"
           >
             <!-- Sélecteur d'émission -->
             <div class="w-full relative">
@@ -86,7 +86,7 @@
             Émission : {{ emissionSelectionnee.titre }}
           </h2>
           <!-- Grille des épisodes -->
-          <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+          <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               v-for="episode in episodesAffiches"
               :key="episode.id"
