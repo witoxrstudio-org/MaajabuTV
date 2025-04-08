@@ -165,8 +165,10 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useRuntimeConfig } from "#app";
+import { ref, computed, onMounted, watch } from "vue";
+import { useRuntimeConfig, useRoute } from "#app"; // Ajout de useRoute
+
+const route = useRoute(); // Ajout de useRoute
 
 const episodes = ref([]);
 const emissions = ref([]);
@@ -208,13 +210,30 @@ const fetchData = async () => {
     loading.value = false;
   }
 };
+
+// Quand tu arrives sur la page, regarde si emissionId est dans l'URL
+onMounted(async () => {
+  await fetchData(); // Important : attendre que les émissions soient chargées
+
+  const emissionIdFromQuery = route.query.emissionId;
+  if (emissionIdFromQuery) {
+    filtreEmission.value = emissionIdFromQuery;
+    changerFiltre(emissionIdFromQuery);
+  }
+});
+
 const emissionSelectionnee = computed(() => {
   if (filtreEmission.value === "All") return null;
   return emissions.value.find((e) => e.id === filtreEmission.value);
 });
-onMounted(() => {
-  fetchData();
-});
+
+const changerFiltre = (emissionId) => {
+  filtreEmission.value = emissionId;
+  pageActuelle.value = 1;
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem("filtreEmission", emissionId);
+  }
+};
 
 const episodesFiltres = computed(() => {
   const data =
@@ -227,6 +246,7 @@ const episodesFiltres = computed(() => {
     (a, b) => new Date(b.date_diffusion) - new Date(a.date_diffusion)
   );
 });
+
 // Pagination
 const nombreTotalPages = computed(() =>
   Math.ceil(episodesFiltres.value.length / itemsParPage)
@@ -235,16 +255,10 @@ const episodesAffiches = computed(() => {
   const debut = (pageActuelle.value - 1) * itemsParPage;
   return episodesFiltres.value.slice(debut, debut + itemsParPage);
 });
-const changerFiltre = (emissionId) => {
-  filtreEmission.value = emissionId;
-  pageActuelle.value = 1;
-  if (typeof localStorage !== "undefined") {
-    localStorage.setItem("filtreEmission", emissionId);
-  }
-};
 
 const formatDateTime = (date) => {
   const optionsDate = { year: "numeric", month: "long", day: "numeric" };
   return new Date(date).toLocaleDateString("fr-FR", optionsDate);
 };
 </script>
+

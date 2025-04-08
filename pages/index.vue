@@ -228,7 +228,7 @@
                 </p>
 
                 <div class="mt-4 flex gap-3 justify-center sm:justify-start">
-                  <NuxtLink :to="`/broadcasts`">
+                  <NuxtLink :to="`/broadcasts?emissionId=${emission.id}`">
                     <button
                       class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
                     >
