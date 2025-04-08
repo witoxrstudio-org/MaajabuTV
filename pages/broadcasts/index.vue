@@ -42,11 +42,11 @@
             class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6 p-4"
           >
             <!-- Sélecteur d'émission -->
-            <div class="w-full md:w-1/2">
+            <div class="w-full relative">
               <select
                 v-model="filtreEmission"
                 @change="changerFiltre(filtreEmission)"
-                class="w-full p-3 border border-gray-600 bg-white text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                class="w-full appearance-none px-4 py-3 pr-12 border border-gray-300 text-white bg-black shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="All">Toutes les émissions</option>
                 <option
@@ -57,6 +57,26 @@
                   {{ emission.titre }}
                 </option>
               </select>
+
+              <!-- Icône de recherche -->
+              <div
+                class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-white"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+                  />
+                </svg>
+              </div>
             </div>
 
             <!-- Détails de l'émission sélectionnée -->
@@ -104,24 +124,33 @@
                   >
                     {{ episode.titre }}
                   </h2>
-                  <p class="text-sm text-gray-500 mb-2">
-                    {{ formatDateTime(episode.date_diffusion) }} •
-                    {{ episode.duree }} mins
-                  </p>
-                  <p class="text-gray-700 text-sm line-clamp-3">
-                    {{ episode.description }}
-                  </p>
+                  <hr class="p-2" />
+                  <div
+                    class="flex flex-wrap items-center justify-start space-x-4 mb-4"
+                  >
+                    <!-- Date -->
+                    <p class="text-sm text-gray-500 flex items-center">
+                      <i class="fas fa-calendar-alt mr-2 text-gray-400"></i>
+                      {{ formatDateTime(episode.date_diffusion) }}
+                    </p>
+
+                    <!-- Durée -->
+                    <p class="text-sm text-gray-500 flex items-center">
+                      <i class="fas fa-clock mr-2 text-gray-400"></i>
+                      {{ episode.duree }} mins
+                    </p>
+                  </div>
                 </div>
               </NuxtLink>
               <!-- Bouton Voir plus -->
               <div class="absolute bottom-2 right-2 group">
                 <div
-                  class="relative flex items-center cursor-pointer text-sm text-blue-500 group-hover:text-blue-700"
+                  class="relative flex items-center cursor-pointer text-sm text-black group-hover:text-black"
                 >
                   <span class="relative">
                     Voir plus
                     <span
-                      class="absolute left-0 bottom-0 h-0.8 bg-blue-500 w-0 group-hover:w-full transition-all duration-300"
+                      class="absolute left-0 bottom-0 h-0.5 bg-black w-0 group-hover:w-full transition-all duration-300"
                     ></span>
                   </span>
                   <i
@@ -138,9 +167,9 @@
               v-for="n in nombreTotalPages"
               :key="n"
               @click="pageActuelle = n"
-              class="px-4 py-2 border transition duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400"
+              class="px-4 py-2 border transition duration-300 font-medium focus:outline-none focus:ring-2"
               :class="{
-                'bg-blue-600 text-white border-blue-600': pageActuelle === n,
+                'bg-black text-white border-white': pageActuelle === n,
                 'bg-white text-gray-700 hover:bg-gray-100 border-gray-300':
                   pageActuelle !== n,
               }"
