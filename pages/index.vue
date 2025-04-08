@@ -168,7 +168,7 @@
       <div class="mj-container">
         <div class="flex items-center justify-between w-full mx-auto mb-6">
           <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
-            <span class="text-blue-500">Nos</span> PlayLists
+            <span class="text-blue-500">Nos</span> Émissions
           </h2>
           <a
             href="#"
@@ -181,26 +181,37 @@
           </a>
         </div>
         <div
+          v-if="emissions"
           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
         >
-          <div v-for="movie in movie" :key="movie.id" class="relative group">
+          <div
+            v-for="emission in emissions"
+            :key="emission.id"
+            class="relative group"
+          >
             <div
               class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group"
             >
               <img
-                v-if="movie.image"
-                :src="movie.image"
-                :alt="movie.title"
+                v-if="
+                  config.public.apiBase + '/assets/' + emission.image_pochette
+                "
+                :src="
+                  config.public.apiBase + '/assets/' + emission.image_pochette
+                "
+                :alt="emission.titre"
                 class="w-full h-56 object-cover"
               />
               <div v-else class="w-full h-56 bg-gray-700"></div>
 
               <div class="p-3">
                 <h3 class="text-white text-sm md:text-base font-semibold">
-                  {{ movie.title }} ({{ movie.year }})
+                  {{ emission.titre }} ({{
+                    formatDate(emission.date_creation)
+                  }})
                 </h3>
                 <p class="text-gray-400 text-xs md:text-sm">
-                  {{ movie.genre }}
+                  {{ emission.animateur }}
                 </p>
               </div>
 
@@ -208,7 +219,9 @@
                 class="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-500 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity text-center p-4"
               >
                 <h3 class="text-white text-sm md:text-lg font-semibold">
-                  {{ movie.title }} ({{ movie.year }})
+                  {{ emission.titre }} ({{
+                    formatDate(emission.date_creation)
+                  }})
                 </h3>
                 <p class="text-gray-300 text-xs md:text-sm">
                   {{ movie.genre }}
@@ -326,8 +339,6 @@
 </template>
 
 <script setup>
-const openIndex = ref(null);
-
 const mediaList = [
   { image: "/img/a2.png" },
   { image: "/img/a3.png" },
@@ -452,6 +463,30 @@ const movie = [
     image: "/img/e10.jpg",
   },
 ];
+const openIndex = ref(null);
+
+const { getItems } = useDirectusItems();
+const config = useRuntimeConfig();
+// Les Emissions
+const fieldsEmissions = ref(
+  "id, titre, description, image_pochette,date_creation"
+);
+
+const {
+  data: emissions,
+  pending: emissions_pending,
+  error: emissions_error,
+} = await useAsyncData("emissions", () =>
+  getItems({
+    collection: "emissions", // Changer ici de live_streams à emissions
+    params: { fields: fieldsEmissions.value, limit: 6 },
+  })
+);
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "short", day: "numeric" };
+  return date.toLocaleDateString("fr-FR", options); // Format "jour mois année" (ex: 8 avr. 2025)
+};
 const faqs = ref([
   {
     question: "lorem ipsum",
