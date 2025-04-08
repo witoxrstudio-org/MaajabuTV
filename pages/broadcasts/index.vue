@@ -37,7 +37,6 @@
           </div>
         </div>
         <div class="container mx-auto py-8">
-          <!-- Barre de sélection + image et titre de l’émission -->
           <div
             class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6"
           >
@@ -127,7 +126,6 @@
                 </div>
               </NuxtLink>
 
-              <!-- Voir plus avec background gradient et effet blur -->
               <div
                 class="absolute inset-0 bg-gradient-to-t from-blue-500 via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
               >
