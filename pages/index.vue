@@ -1,9 +1,157 @@
 <template>
-  <div>
+  <div class="bg-black">
     <HeroSection>
       <MediaCarousel :mediaList="mediaList" />
     </HeroSection>
+    <section>
+      <div class="mj-container my-8">
+        <div class="flex justify-between items-center py-4 md:px-0">
+          <div class="w-1/3 border-t-2 border-white"></div>
+          <div class="w-1/3 text-center hidden md:block"></div>
+          <div class="w-1/3 border-t-2 border-white"></div>
+        </div>
+        <div class="flex items-center justify-between w-full mx-auto mb-6">
+          <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
+            <span class="text-blue-500">Nos</span> Émissions
+          </h2>
+          <a
+            href="#"
+            class="text-white font-medium text-sm md:text-base relative group"
+          >
+            Voir plus
+            <span
+              class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+        </div>
+        <div
+          v-if="emissions"
+          class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        >
+          <div
+            v-for="emission in emissions"
+            :key="emission.id"
+            class="relative group"
+          >
+            <div
+              class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group"
+            >
+              <img
+                v-if="
+                  config.public.apiBase + '/assets/' + emission.image_pochette
+                "
+                :src="
+                  config.public.apiBase + '/assets/' + emission.image_pochette
+                "
+                :alt="emission.titre"
+                class="w-full h-56 object-cover"
+              />
+              <div v-else class="w-full h-56 bg-gray-700"></div>
+
+              <div class="p-3">
+                <h3 class="text-white text-sm md:text-base font-semibold">
+                  {{ emission.titre }} ({{
+                    formatDate(emission.date_creation)
+                  }})
+                </h3>
+                <p class="text-gray-400 text-xs md:text-sm">
+                  {{ emission.animateur }}
+                </p>
+              </div>
+
+              <div
+                class="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-500 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity text-center p-4"
+              >
+                <h3 class="text-white text-sm md:text-lg font-semibold">
+                  {{ emission.titre }} ({{
+                    formatDate(emission.date_creation)
+                  }})
+                </h3>
+                <p class="text-gray-300 text-xs md:text-sm">
+                  {{ movie.genre }}
+                </p>
+
+                <div class="mt-4 flex gap-3 justify-center sm:justify-start">
+                  <NuxtLink :to="`/broadcasts?emissionId=${emission.id}`">
+                    <button
+                      class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                        />
+                      </svg>
+                    </button>
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- section movies -->
+
+    <!-- Fin section movies -->
+    <section class="bg-black pb-6">
+      <div class="mj-container">
+        <div
+          class="relative flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
+        >
+          <!-- Texte -->
+          <div
+            class="w-full md:w-1/2 p-8 text-white flex flex-col justify-center relative z-20 md:pr-16"
+          >
+            <h2 class="text-4xl font-bold mb-4">Maajabu Tv</h2>
+            <p
+              class="mb-6 text-lg md:-mr-52 text-justify bg-blue-900/60 rounded-lg"
+            >
+              Maajabu Gospel est un label de production musicale très connu,
+              associé à quatre ambassadeurs talentueux et populaires : Mike
+              Kalambay, Sandra Mbuyi, Deborah Lukalu et Rosny Kayiba. Ces
+              artistes, qui comptent parmi les meilleurs chanteurs de gospel en
+              RDC, ont contribué à la popularité du label, notamment à travers
+              des événements comme Maajabu Talent, où ils jouent le rôle de
+              coachs et de juges.
+            </p>
+            <div class="flex space-x-4">
+              <button
+                class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
+              >
+                Nous contacter
+              </button>
+            </div>
+          </div>
+
+          <!-- Image -->
+          <div class="hidden md:block md:w-1/2 relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10"
+            ></div>
+            <img
+              src="/img/luk.jpg"
+              alt="People reading books"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="bg-black py-6">
       <div class="mj-container text-white">
         <div class="flex justify-between items-center py-4 md:px-0">
@@ -115,148 +263,6 @@
           <div class="w-1/3 border-t-2 border-white"></div>
           <div class="w-1/3 text-center hidden md:block"></div>
           <div class="w-1/3 border-t-2 border-white"></div>
-        </div>
-      </div>
-    </section>
-    <!-- Fin section movies -->
-    <section class="bg-black pb-6">
-      <div class="mj-container">
-        <div
-          class="relative flex flex-col md:flex-row bg-blue-900 rounded-lg overflow-hidden shadow-lg"
-        >
-          <!-- Texte -->
-          <div
-            class="w-full md:w-1/2 p-8 text-white flex flex-col justify-center relative z-20 md:pr-16"
-          >
-            <h2 class="text-4xl font-bold mb-4">Maajabu Tv</h2>
-            <p
-              class="mb-6 text-lg md:-mr-52 text-justify bg-blue-900/60 rounded-lg"
-            >
-              Maajabu Gospel est un label de production musicale très connu,
-              associé à quatre ambassadeurs talentueux et populaires : Mike
-              Kalambay, Sandra Mbuyi, Deborah Lukalu et Rosny Kayiba. Ces
-              artistes, qui comptent parmi les meilleurs chanteurs de gospel en
-              RDC, ont contribué à la popularité du label, notamment à travers
-              des événements comme Maajabu Talent, où ils jouent le rôle de
-              coachs et de juges.
-            </p>
-            <div class="flex space-x-4">
-              <button
-                class="bg-white text-blue-900 font-semibold py-2 px-6 rounded shadow hover:bg-gray-200 transition"
-              >
-                Nous contacter
-              </button>
-            </div>
-          </div>
-
-          <!-- Image -->
-          <div class="hidden md:block md:w-1/2 relative">
-            <div
-              class="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10"
-            ></div>
-            <img
-              src="/img/luk.jpg"
-              alt="People reading books"
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-black pb-6">
-      <div class="mj-container">
-        <div class="flex items-center justify-between w-full mx-auto mb-6">
-          <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
-            <span class="text-blue-500">Nos</span> Émissions
-          </h2>
-          <a
-            href="#"
-            class="text-white font-medium text-sm md:text-base relative group"
-          >
-            Voir plus
-            <span
-              class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
-            ></span>
-          </a>
-        </div>
-        <div
-          v-if="emissions"
-          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
-        >
-          <div
-            v-for="emission in emissions"
-            :key="emission.id"
-            class="relative group"
-          >
-            <div
-              class="relative bg-gray-800 rounded-lg overflow-hidden shadow-lg group"
-            >
-              <img
-                v-if="
-                  config.public.apiBase + '/assets/' + emission.image_pochette
-                "
-                :src="
-                  config.public.apiBase + '/assets/' + emission.image_pochette
-                "
-                :alt="emission.titre"
-                class="w-full h-56 object-cover"
-              />
-              <div v-else class="w-full h-56 bg-gray-700"></div>
-
-              <div class="p-3">
-                <h3 class="text-white text-sm md:text-base font-semibold">
-                  {{ emission.titre }} ({{
-                    formatDate(emission.date_creation)
-                  }})
-                </h3>
-                <p class="text-gray-400 text-xs md:text-sm">
-                  {{ emission.animateur }}
-                </p>
-              </div>
-
-              <div
-                class="absolute inset-0 bg-gradient-to-b from-blue-800 to-blue-500 opacity-0 group-hover:opacity-90 flex flex-col items-center justify-center transition-opacity text-center p-4"
-              >
-                <h3 class="text-white text-sm md:text-lg font-semibold">
-                  {{ emission.titre }} ({{
-                    formatDate(emission.date_creation)
-                  }})
-                </h3>
-                <p class="text-gray-300 text-xs md:text-sm">
-                  {{ movie.genre }}
-                </p>
-
-                <div class="mt-4 flex gap-3 justify-center sm:justify-start">
-                  <NuxtLink :to="`/broadcasts?emissionId=${emission.id}`">
-                    <button
-                      class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
-                        />
-                      </svg>
-                    </button>
-                  </NuxtLink>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
