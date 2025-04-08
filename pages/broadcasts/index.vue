@@ -78,26 +78,6 @@
                 </svg>
               </div>
             </div>
-
-            <!-- Détails de l'émission sélectionnée -->
-            <div
-              v-if="emissionSelectionnee"
-              class="w-full md:w-1/2 flex items-center gap-4 bg-white p-4 rounded-lg shadow"
-            >
-              <img
-                :src="emissionSelectionnee.image_pochettes"
-                alt="Image de l'émission"
-                class="w-24 h-24 object-cover rounded-lg shadow-md"
-              />
-              <div>
-                <h2 class="text-lg font-semibold text-gray-900">
-                  {{ emissionSelectionnee.titre }}
-                </h2>
-                <p class="text-sm text-gray-600 line-clamp-3">
-                  {{ emissionSelectionnee.description }}
-                </p>
-              </div>
-            </div>
           </div>
           <h2
             v-if="emissionSelectionnee"
@@ -110,17 +90,21 @@
             <div
               v-for="episode in episodesAffiches"
               :key="episode.id"
-              class="bg-white overflow-hidden shadow-md hover:shadow-lg transition duration-300 group relative"
+              class="bg-white shadow-md hover:shadow-lg transition duration-300 group relative overflow-hidden"
             >
-              <NuxtLink :to="`/broadcasts/${episode.slug}`" class="block">
+              <!-- NuxtLink avec effet sur hover -->
+              <NuxtLink
+                :to="`/broadcasts/${episode.slug}`"
+                class="block group-hover:relative group-hover:opacity-90"
+              >
                 <img
-                  :src="episode.emission_id?.image_pochettes"
+                  :src="`https://maajabu.space/assets/${episode.emission_id?.image_pochette}`"
                   alt="Image de l'émission"
-                  class="w-full h-56 object-cover"
+                  class="w-full h-56 object-cover transition duration-300 group-hover:scale-105"
                 />
                 <div class="p-4">
                   <h2
-                    class="text-lg md:text-xl font-semibold text-gray-900 mb-1 line-clamp-2"
+                    class="text-lg md:text-xl font-semibold text-gray-900 mb-1 line-clamp-2 group-hover:text-blue-600"
                   >
                     {{ episode.titre }}
                   </h2>
@@ -142,20 +126,20 @@
                   </div>
                 </div>
               </NuxtLink>
-              <!-- Bouton Voir plus -->
-              <div class="absolute bottom-2 right-2 group">
+
+              <!-- Voir plus avec background gradient et effet blur -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-blue-500 via-blue-600 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"
+              >
                 <div
-                  class="relative flex items-center cursor-pointer text-sm text-black group-hover:text-black"
+                  class="absolute bottom-4 left-4 right-4 flex justify-center"
                 >
-                  <span class="relative">
+                  <NuxtLink
+                    :to="`/broadcasts/${episode.slug}`"
+                    class="text-white font-semibold bg-transparent px-4 py-2 rounded-lg border border-yellow-200 transform scale-0 group-hover:scale-100 transition-all duration-300"
+                  >
                     Voir plus
-                    <span
-                      class="absolute left-0 bottom-0 h-0.5 bg-black w-0 group-hover:w-full transition-all duration-300"
-                    ></span>
-                  </span>
-                  <i
-                    class="fas fa-arrow-right px-4 ml-1 transform group-hover:translate-x-2 transition-transform duration-300"
-                  ></i>
+                  </NuxtLink>
                 </div>
               </div>
             </div>
