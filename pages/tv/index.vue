@@ -54,28 +54,20 @@
             <div
               class="relative w-full h-48 bg-gray-700 rounded-t-md overflow-hidden flex items-center justify-center"
             >
-              <!-- Image de fond -->
               <img
                 :src="config.public.apiBase + '/assets/' + live.couverture"
                 :alt="live.titre"
                 class="w-full h-full object-cover"
               />
-
-              <!-- Icône Play centrée -->
               <div
                 class="absolute inset-0 flex items-center justify-center bg-black/40"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-16 h-16 text-white opacity-80 group-hover:text-yellow-500 transition duration-300"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
+                <img
+                  src="/img/ply.png"
+                  alt="Play icon"
+                  class="w-16 h-16 opacity-80 group-hover:opacity-100 transition duration-300"
+                />
               </div>
-
-              <!-- Dégradé noir en bas de l'image -->
               <div
                 class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-gray-900 to-transparent"
               ></div>
