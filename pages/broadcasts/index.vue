@@ -36,7 +36,14 @@
             ></div>
           </div>
         </div>
-        <div class="container mx-auto py-8">
+        <div class="container mx-auto py-4">
+          <h2
+            v-if="emissionSelectionnee"
+            class="text-4xl font-bold mb-8 text-center"
+          >
+            Émission : {{ emissionSelectionnee.titre }}
+          </h2>
+
           <div
             class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-6"
           >
@@ -78,14 +85,9 @@
               </div>
             </div>
           </div>
-          <h2
-            v-if="emissionSelectionnee"
-            class="text-2xl font-bold mb-4 text-center"
-          >
-            Émission : {{ emissionSelectionnee.titre }}
-          </h2>
+
           <!-- Grille des épisodes -->
-          <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               v-for="episode in episodesAffiches"
               :key="episode.id"
@@ -211,9 +213,8 @@ const fetchData = async () => {
   }
 };
 
-// Quand tu arrives sur la page, regarde si emissionId est dans l'URL
 onMounted(async () => {
-  await fetchData(); // Important : attendre que les émissions soient chargées
+  await fetchData();
 
   const emissionIdFromQuery = route.query.emissionId;
   if (emissionIdFromQuery) {
