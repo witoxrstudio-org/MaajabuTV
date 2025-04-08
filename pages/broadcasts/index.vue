@@ -115,18 +115,18 @@
               </NuxtLink>
               <!-- Bouton Voir plus -->
               <div class="absolute bottom-2 right-2 group">
-                <div class="relative">
-                  <p
-                    class="text-sm text-blue-500 group-hover:text-blue-700 cursor-pointer flex items-center"
-                  >
-                    <span>Voir plus</span>
-                    <i
-                      class="fas fa-arrow-right px-4 ml-1 transform group-hover:translate-x-2 transition-transform duration-300"
-                    ></i>
-                  </p>
-                  <span
-                    class="absolute left-0 bottom-0 h-0.5 bg-blue-500 w-0 group-hover:w-full transition-all duration-300"
-                  ></span>
+                <div
+                  class="relative flex items-center cursor-pointer text-sm text-blue-500 group-hover:text-blue-700"
+                >
+                  <span class="relative">
+                    Voir plus
+                    <span
+                      class="absolute left-0 bottom-0 h-0.8 bg-blue-500 w-0 group-hover:w-full transition-all duration-300"
+                    ></span>
+                  </span>
+                  <i
+                    class="fas fa-arrow-right px-4 ml-1 transform group-hover:translate-x-2 transition-transform duration-300"
+                  ></i>
                 </div>
               </div>
             </div>
