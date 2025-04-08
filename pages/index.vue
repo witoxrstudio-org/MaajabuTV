@@ -228,32 +228,31 @@
                 </p>
 
                 <div class="mt-4 flex gap-3 justify-center sm:justify-start">
-                  <!-- Bouton Lecture -->
-                  <button
-                    class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="currentColor"
-                      class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
+                  <NuxtLink :to="`/broadcasts`">
+                    <button
+                      class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-yellow-500"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                      />
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
-                      />
-                    </svg>
-                  </button>
-
-                  <!-- Bouton Favoris -->
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 transition-transform duration-300"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                        />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                        />
+                      </svg>
+                    </button>
+                  </NuxtLink>
                   <button
                     class="p-3 bg-gray-600 rounded-full text-white transition-all duration-300 hover:bg-red-500"
                   >
@@ -398,69 +397,6 @@ const movie = [
     year: 2019,
     genre: "Musical, Gospel",
     image: "/img/e1.png",
-  },
-  {
-    id: 2,
-    title: "Reponse",
-    year: 2019,
-    genre: "Musical, Gospel",
-    image: "/img/e2.png",
-  },
-  {
-    id: 3,
-    title: "KDO",
-    year: 2016,
-    genre: "Musical, Gospel",
-    image: "/img/e3.jpeg",
-  },
-  {
-    id: 4,
-    title: "Amour Inco.",
-    year: 2024,
-    genre: "Musical, Gospel",
-    image: "/img/e4.jpg",
-  },
-  {
-    id: 5,
-    title: "Jésus",
-    year: 2023,
-    genre: "Musical, Gospel",
-    image: "/img/e5.jpg",
-  },
-  {
-    id: 6,
-    title: "Wondefull",
-    year: 2022,
-    genre: "Musical, Gospel",
-    image: "/img/e6.jpg",
-  },
-  {
-    id: 7,
-    title: "Historia",
-    year: 2021,
-    genre: "Musical, Gospel",
-    image: "/img/e7.jpg",
-  },
-  {
-    id: 8,
-    title: "Sois mon Dieu",
-    year: 2017,
-    genre: "Musical, Gospel",
-    image: "/img/e8.jpg",
-  },
-  {
-    id: 9,
-    title: "Emmanuel",
-    year: 2020,
-    genre: "Musical, Gospel",
-    image: "/img/e9.jpg",
-  },
-  {
-    id: 10,
-    title: "Monde Electrifié",
-    year: 2019,
-    genre: "Musical, Gospel",
-    image: "/img/e10.jpg",
   },
 ];
 const openIndex = ref(null);
