@@ -49,10 +49,10 @@
             v-for="live in live_streams"
             :key="live.id"
             :to="`/tv/${live.slug}`"
-            class="group bg-gray-900 cursor-pointer rounded-lg relative"
+            class="group bg-gray-900 cursor-pointer relative"
           >
             <div
-              class="relative w-full h-48 bg-gray-700 rounded-t-md overflow-hidden flex items-center justify-center"
+              class="relative w-full h-48 bg-gray-700 overflow-hidden flex items-center justify-center"
             >
               <img
                 :src="config.public.apiBase + '/assets/' + live.couverture"
