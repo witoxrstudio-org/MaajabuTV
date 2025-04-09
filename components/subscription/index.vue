@@ -22,15 +22,15 @@
           <h2 class="text-2xl md:text-3xl font-bold text-white relative group">
             <span class="text-blue-500">Abonnez-vous</span> à notre chaîne
           </h2>
-          <a
-            href="#"
+          <NuxtLink
+            to="/contact"
             class="text-white font-medium text-sm md:text-base relative group"
           >
-            Voir plus
+            nous contacter
             <span
               class="absolute left-0 bottom-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
             ></span>
-          </a>
+          </NuxtLink>
         </div>
         <div class="my-8">
           <p class="text-center text-white text-lg mb-4">

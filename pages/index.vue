@@ -286,7 +286,7 @@
             </h2>
             <p class="text-gray-400 mt-2 text-left">
               Les questions les plus fréquemment posées par nos abonnés. Vous ne
-              trouvez pas de réponse ?
+              trouvez pas de réponse?
             </p>
           </div>
 
