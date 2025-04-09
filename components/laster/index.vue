@@ -57,35 +57,30 @@
           <ul class="space-y-3 text-gray-500 text-sm">
             <li>
               <NuxtLink
-                to="/support"
                 class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
                 >Customer Support</NuxtLink
               >
             </li>
             <li>
               <NuxtLink
-                to="/cookies"
                 class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
                 >Cookies</NuxtLink
               >
             </li>
             <li>
               <NuxtLink
-                to="/license"
                 class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
                 >License</NuxtLink
               >
             </li>
             <li>
               <NuxtLink
-                to="/terms"
                 class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
                 >Terms & Conditions</NuxtLink
               >
             </li>
             <li>
               <NuxtLink
-                to="/privacy"
                 class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
                 >Privacy Policy</NuxtLink
               >
