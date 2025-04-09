@@ -224,33 +224,13 @@
           </div>
         </div>
         <!-- end -->
-        <!-- NewsLetter -->
-        <div
-          class="text-white py-12 mt-8 px-6 flex flex-col items-center text-center"
-        >
-          <h2 class="text-3xl font-bold">
-            Newsletter <span class="text-blue-500">Sign Up</span>
-          </h2>
-          <p class="mt-4 text-gray-400 max-w-lg">
-            Restez informé des dernières sorties de nouvel album, des promotions
-            exclusives et des offres spéciales en vous abonnant à notre
-            newsletter.
-          </p>
-          <div class="mt-6 flex flex-col sm:flex-row w-full max-w-md">
-            <input
-              type="email"
-              placeholder="Entrez votre email ici"
-              class="w-full px-4 py-3 rounded-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              class="mt-3 sm:mt-0 sm:ml-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
-            >
-              S'abonner
-            </button>
-          </div>
-        </div>
-        <!-- Fin NewsLetter -->
       </div>
+    </section>
+    <section>
+      <subscription />
+    </section>
+    <section class="bg-black">
+      <laster />
     </section>
   </div>
 </template>

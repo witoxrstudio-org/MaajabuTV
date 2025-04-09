@@ -266,31 +266,31 @@
         </div>
       </div>
     </section>
-    <section class="bg-black pb-6">
-      <div class="mj-container">
+    <section class="relative bg-black pb-6 overflow-hidden">
+      <!-- Image de fond filigrane -->
+
+      <div class="mj-container relative z-10">
+        <img
+          src="/img/david.png"
+          alt="Filigrane"
+          class="absolute -left-48 top-12 h-full w-full max-w-[1200px] object-contain opacity-40 pointer-events-none"
+        />
         <div
           class="text-white flex flex-col lg:flex-row items-center justify-between py-12 mx-auto"
         >
-          <!-- Section de gauche : Titre et bouton -->
-          <div class="lg:w-1/2 text-left flex flex-col justify-center h-full">
-            <h2 class="text-3xl md:text-4xl font-bold text-center lg:text-left">
+          <div
+            class="w-full lg:w-1/2 text-left flex flex-col justify-start h-full px-4 -mt-96"
+          >
+            <h2 class="text-3xl md:text-4xl font-bold text-left">
               Frequently <span class="text-blue-500">Asked</span> Questions
             </h2>
-            <p class="text-gray-400 mt-2 text-center lg:text-left">
-              Questions that get asked the most by our subscribers. Can't find
-              an answer?
+            <p class="text-gray-400 mt-2 text-left">
+              Les questions les plus fréquemment posées par nos abonnés. Vous ne
+              trouvez pas de réponse ?
             </p>
-            <div class="mt-6 self-center lg:self-start">
-              <button
-                class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg text-lg"
-              >
-                Ask a Question
-              </button>
-            </div>
           </div>
 
-          <!-- Section de droite : FAQ -->
-          <div class="w-full lg:w-1/2 mt-8 lg:mt-0 space-y-4">
+          <div class="w-full lg:w-1/2 mt-8 lg:mt-0 space-y-4 px-4">
             <div
               v-for="(faq, index) in faqs"
               :key="index"
@@ -316,6 +316,7 @@
         </div>
       </div>
     </section>
+
     <section class="bg-blue-900 py-8">
       <brands />
     </section>
