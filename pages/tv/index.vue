@@ -37,6 +37,7 @@
           </div>
         </div>
         <!-- debut -->
+
         <div v-if="live_streams_pending">Chargement en cours...</div>
         <div v-else-if="live_streams_error" class="text-red-500">
           Erreur : {{ live_streams_error.message }}

@@ -39,7 +39,6 @@
           ></div>
         </div>
       </div>
-
       <div
         class="bg-gray-900 rounded-lg flex flex-col md:flex-row overflow-hidden shadow-lg"
       >

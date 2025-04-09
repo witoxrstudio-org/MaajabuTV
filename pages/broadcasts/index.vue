@@ -85,7 +85,7 @@
               </div>
             </div>
           </div>
-
+          <div v-if="loading" class="loader"></div>
           <!-- Grille des épisodes -->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
@@ -174,9 +174,9 @@
 </template>
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { useRuntimeConfig, useRoute } from "#app"; // Ajout de useRoute
+import { useRuntimeConfig, useRoute } from "#app";
 
-const route = useRoute(); // Ajout de useRoute
+const route = useRoute();
 
 const episodes = ref([]);
 const emissions = ref([]);
@@ -268,4 +268,5 @@ const formatDateTime = (date) => {
   return new Date(date).toLocaleDateString("fr-FR", optionsDate);
 };
 </script>
+
 
