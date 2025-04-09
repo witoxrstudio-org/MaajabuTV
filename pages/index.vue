@@ -319,6 +319,9 @@
     <section class="bg-blue-900 py-8">
       <brands />
     </section>
+    <section>
+      <subscription />
+    </section>
     <section class="bg-black">
       <laster />
     </section>

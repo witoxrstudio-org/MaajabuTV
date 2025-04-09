@@ -1,88 +1,118 @@
 <template>
   <footer class="mj-container text-white py-10">
-    <div class="mx-auto grid grid-cols-2 md:grid-cols-4">
-      <!-- Colonne Logo + Contact -->
-      <div>
-        <img src="/img/logo.png" alt="MovieMax Logo" class="h-24 w-auto" />
-        <div class="mt-4 space-y-2 text-gray-400">
-          <p>
-            <span class="font-semibold text-white">Email: </span>
-            <span
-              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
-              >maajabu@tv.com</span
-            >
-          </p>
-          <p>
-            <span class="font-semibold text-white">Téléphone: </span>
-            <span
-              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
-              >(243) 999-7172</span
-            >
-          </p>
-          <p>
-            <span class="font-semibold text-white">Siège: </span><br />
-            <span
-              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
-              >120 quartier, Avenue, DRC</span
-            >
-          </p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <!-- Logo + Description -->
+        <div>
+          <div class="flex items-center space-x-2">
+            <img src="/img/logo.png" alt="Pagedone Logo" class="h-48 w-auto" />
+          </div>
         </div>
-      </div>
 
-      <!-- Colonne Quick Links -->
-
-      <div>
-        <h3 class="text-lg font-semibold text-white mb-3">Quick Links</h3>
-        <ul class="space-y-2 text-gray-400">
-          <li v-for="link in quickLinks" :key="link">
-            <a
-              href="#"
-              class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 hover:text-blue-400"
-              >{{ link }}</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <!-- Colonne Social Media -->
-      <div>
-        <h3 class="text-lg font-semibold text-white mb-3">Social Media</h3>
-        <ul class="grid grid-cols-1 sm:grid-cols-1 gap-4 text-gray-400 mb-6">
-          <li v-for="social in socialMedia" :key="social.name">
-            <a href="#" class="flex items-center space-x-2 hover:text-blue-500">
-              <i :class="social.icon" class="fa"></i>
-              <span
-                class="relative inline-block after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100"
-                >{{ social.name }}</span
+        <!-- Links Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Menu</h4>
+          <ul class="space-y-3 text-gray-500 text-sm">
+            <li>
+              <NuxtLink
+                to="/"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Accueil</NuxtLink
               >
-            </a>
-          </li>
-        </ul>
-      </div>
+            </li>
+            <li>
+              <NuxtLink
+                to="/tv"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Live</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/submit"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Submit</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/broadcasts"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Emission</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/contact"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Contacts</NuxtLink
+              >
+            </li>
+          </ul>
+        </div>
 
-      <!-- Colonne Réseaux Sociaux + Newsletter -->
-      <div class="bg-gray-800 p-4 rounded-lg shadow-lg max-w-md mx-auto">
-        <h3 class="text-xl font-semibold text-white mb-4">
-          <span class="text-blue-500 cursor-pointer hover:underline"
-            >Newsletter</span
-          >
-        </h3>
-        <p class="text-gray-300 text-sm mb-6">
-          Restez au courant des dernières sorties de films, des promotions
-          exclusives et des offres spéciales en vous abonnant à notre
-          newsletter.
-        </p>
-        <div class="flex flex-col gap-4">
-          <input
-            type="email"
-            placeholder="Votre EMail"
-            class="px-4 py-2 w-full bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <button
-            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md transition duration-300"
-          >
-            S'abonner
-          </button>
+        <!-- Support Links -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Support</h4>
+          <ul class="space-y-3 text-gray-500 text-sm">
+            <li>
+              <NuxtLink
+                to="/support"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Customer Support</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/cookies"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Cookies</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/license"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >License</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/terms"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Terms & Conditions</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
+                to="/privacy"
+                class="relative inline-block after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+                >Privacy Policy</NuxtLink
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Instagram Feed -->
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h4 class="text-white font-semibold">Instagram</h4>
+            <NuxtLink
+              to="/instagram"
+              class="relative inline-block text-gray-500 text-sm after:block after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:text-white"
+            >
+              Visit All
+            </NuxtLink>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <img
+              v-for="(image, index) in images"
+              :key="index"
+              :src="image"
+              alt="Instagram post"
+              class="h-20 w-full object-cover rounded-md"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -91,24 +121,43 @@
     <div
       class="border-t border-gray-700 mt-10 pt-6 text-gray-400 text-center text-sm"
     >
-      <p>Copyright © 2025 Maajabu TV. All rights reserved.</p>
+      <p class="text-gray-500 text-sm mt-4">
+        Copyright © {{ currentYear }} Maajabu TV. All rights reserved.
+      </p>
       <div class="flex justify-center gap-4 mt-2">
-        <a href="#" class="hover:text-blue-400">Privacy Policy</a>
-        <a href="#" class="hover:text-blue-400">Terms & Conditions</a>
-        <a href="#" class="hover:text-blue-400">Cookie Policy</a>
+        <a href="#" class="relative group text-gray-700 hover:text-blue-400">
+          Privacy Policy
+          <span
+            class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
+        <a href="#" class="relative group text-gray-700 hover:text-blue-400">
+          Terms & Conditions
+          <span
+            class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
+        <a href="#" class="relative group text-gray-700 hover:text-blue-400">
+          Cookie Policy
+          <span
+            class="absolute left-0 -bottom-1 h-0.5 w-0 bg-blue-400 transition-all duration-300 group-hover:w-full"
+          ></span>
+        </a>
       </div>
     </div>
   </footer>
 </template>
 
 <script setup>
-const quickLinks = ["Accueil", "Live", "Submit", "Emission", "Contacts"];
-
-const socialMedia = ref([
-  { name: "Instagram", icon: "fab fa-instagram" },
-  { name: "Facebook", icon: "fa-brands fa-facebook-f" },
-  { name: "Youtube", icon: "fab fa-youtube" },
-]);
+const currentYear = new Date().getFullYear();
+const images = [
+  "/img/e4.jpg",
+  "/img/e2.png",
+  "/img/e1.png",
+  "/img/e10.jpg",
+  "/img/e5.jpg",
+  "/img/e6.jpg",
+];
 </script>
 <style>
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
