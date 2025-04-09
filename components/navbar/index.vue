@@ -7,12 +7,18 @@
         : 'bg-transparent'
     "
   >
-    <header class="mj-container flex w-full items-center justify-between p-4">
+    <header
+      class="mj-container z-50 flex w-full items-center justify-between p-4"
+    >
       <!-- Logo -->
-      <div class="flex items-center">
+      <div class="relative flex items-center">
         <NuxtLink to="/">
           <img src="/img/logo.png" alt="Maajabu Logo" class="h-20 sm:h-20" />
         </NuxtLink>
+        <div
+          v-show="isLoading"
+          class="loader absolute inset-0 z-0 flex items-center justify-center "
+        ></div>
       </div>
 
       <!-- Menu Desktop -->
@@ -214,97 +220,3 @@ onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
 </script>
-<style scoped>
-/* Loader Styles */
-.loader {
-  z-index: 99 !important;
-  width: 36px;
-  height: 36px;
-  display: block;
-  margin: 10px auto;
-  position: relative;
-  color: #f0efef;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-  -webkit-animation: rotation 1s linear infinite;
-}
-
-.loader::after,
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 50%;
-  left: 50%;
-  transform: scale(0.5) translate(0, 0);
-  background-color: #055fc5;
-  border-radius: 50%;
-  animation: animloader 1s infinite ease-in-out;
-  -webkit-transform: scale(0.5) translate(0, 0);
-  -moz-transform: scale(0.5) translate(0, 0);
-  -ms-transform: scale(0.5) translate(0, 0);
-  -o-transform: scale(0.5) translate(0, 0);
-}
-
-.loader::before {
-  background-color: #02ab4b;
-  transform: scale(0.5) translate(-36px, -36px);
-  -webkit-transform: scale(0.5) translate(-36px, -36px);
-  -moz-transform: scale(0.5) translate(-36px, -36px);
-  -ms-transform: scale(0.5) translate(-36px, -36px);
-  -o-transform: scale(0.5) translate(-36px, -36px);
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-  }
-}
-
-@keyframes animloader {
-  50% {
-    transform: scale(1) translate(-50%, -50%);
-  }
-}
-.route-enter-from {
-  opacity: 0;
-  transform: translateX(100px);
-}
-.route-enter-active {
-  transition: all 0.3s ease-out;
-}
-.route-leave-to {
-  opacity: 0;
-  transform: translateX(-100px);
-}
-.route-leave-active {
-  transition: all 0.2s ease-in;
-}
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeUp {
-  animation: fadeUp 0.5s ease-out forwards;
-}
-</style>

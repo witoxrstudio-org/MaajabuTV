@@ -20,7 +20,7 @@
 
     <!-- Contenu principal -->
     <section class="bg-black text-white py-8">
-      <div class="mj-container bg-black px-4">
+      <div class="relative mj-container bg-black px-4">
         <div class="mb-8 flex items-center justify-between space-x-4">
           <div class="whitespace-nowrap aos-init aos-animate">
             <h2
@@ -178,6 +178,9 @@
             </div>
           </div>
         </div>
+        <div
+          class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black via-black to-transparent"
+        ></div>
       </div>
     </section>
     <section>

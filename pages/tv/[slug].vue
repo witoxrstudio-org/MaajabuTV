@@ -201,6 +201,12 @@
         </div>
       </div>
     </section>
+    <section>
+      <subscription />
+    </section>
+    <section class="bg-black">
+      <laster />
+    </section>
   </div>
 </template>
 

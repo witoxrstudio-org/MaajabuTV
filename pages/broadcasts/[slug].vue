@@ -92,8 +92,13 @@
         </div>
       </div>
     </section>
+    <section>
+      <subscription />
+    </section>
+    <section class="bg-black">
+      <laster />
+    </section>
   </div>
-  <div v-else class="text-center text-gray-500">Chargement...</div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

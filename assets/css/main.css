@@ -80,7 +80,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .loader::before {
-  background-color: #ecec04;
+  background-color: #b58431;
   transform: scale(0.5) translate(-36px, -36px);
   -webkit-transform: scale(0.5) translate(-36px, -36px);
   -moz-transform: scale(0.5) translate(-36px, -36px);
